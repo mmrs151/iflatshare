@@ -6,18 +6,13 @@ Replace these with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from models import Item
+from decimal import Decimal
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
+class ItemManagerTest(TestCase):
+    def test_monthly_total(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Tests the monthly total method of ItemManager
         """
-        self.failUnlessEqual(1 + 1, 2)
-
-__test__ = {"doctest": """
-Another way to test that 1 + 1 is equal to 2.
-
->>> 1 + 1 == 2
-True
-"""}
-
+        month = 3
+        self.failUnlessEqual(Decimal('9.88'), Item.objects.monthly_total(month))

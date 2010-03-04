@@ -50,3 +50,16 @@
     user_permissions: []
   model: mcm.user
   pk: 2
+- fields: {category: 1, date: 2010-03-04, name: Eggs, price: '1.20', user: 2}
+  model: mcm.item
+  pk: 1
+- fields: {category: 1, date: 2010-03-04, name: 'tea, suger, milk, eve milk, mayo',
+    price: '8.68', user: 2}
+  model: mcm.item
+  pk: 2
+- fields: {category: 1, date: 2010-02-04, name: carrots, price: '3.20', user: 2}
+  model: mcm.item
+  pk: 3
+- fields: {category: 1, date: 2010-01-04, name: pepper, price: '1.12', user: 2}
+  model: mcm.item
+  pk: 4
