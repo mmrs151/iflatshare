@@ -1,1 +1,13 @@
-item list
+<table border="1">
+    <tr>
+        <td>Item Name</td><td>Item Price</td>
+    </tr>
+        {% for item in item_list %}
+    <tr>
+        <td>{{item.name}}</td><td>{{ item.price }}</td>
+    </tr>
+{% endfor %}
+    <tr>
+        <td>Total</td><td>{{ monthly_total }}</td>
+    </tr>
+</table>

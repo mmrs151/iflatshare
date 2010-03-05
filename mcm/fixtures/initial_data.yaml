@@ -63,3 +63,9 @@
 - fields: {category: 1, date: 2010-01-04, name: pepper, price: '1.12', user: 2}
   model: mcm.item
   pk: 4
+- fields: {category: 1, date: 2009-01-04, name: banana, price: '1.20', user: 2}
+  model: mcm.item
+  pk: 5
+- fields: {category: 1, date: 2009-03-04, name: potato, price: '2.12', user: 2}
+  model: mcm.item
+  pk: 6

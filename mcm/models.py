@@ -26,9 +26,11 @@ class Category(models.Model):
         return self.name
 
 class ItemManager(models.Manager):
-    def monthly_total(self, month):
-#        return self.get_query_set().aggregate(Sum('price'))
-        return self.get_query_set().filter(date__month=month).aggregate(Sum('price'))['price__sum']
+    def monthly_total(self, year, month):
+        return Item.objects.filter(date__month=month, date__year=year).aggregate(Sum('price'))['price__sum']
+
+    def monthly_transaction(self, year, month):
+        return self.get_query_set().filter(date__year=year, date__month=month)
 
 class Item(models.Model):
     category = models.ForeignKey(Category)

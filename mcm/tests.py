@@ -10,9 +10,17 @@ from models import Item
 from decimal import Decimal
 
 class ItemManagerTest(TestCase):
+    fixtures = ['test_data']
+
     def test_monthly_total(self):
         """
         Tests the monthly total method of ItemManager
         """
-        month = 3
-        self.failUnlessEqual(Decimal('9.88'), Item.objects.monthly_total(month))
+        self.failUnlessEqual(Decimal('9.88'), Item.objects.monthly_total(2010, 3))
+
+    def test_monthly_transaction(self):
+        """
+        Test the montyly transaction list
+        """
+
+        self.assertEquals(str(Item.objects.monthly_transaction(2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
