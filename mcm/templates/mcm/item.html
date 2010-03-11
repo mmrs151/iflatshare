@@ -1,3 +1,6 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
+{% endif %}
 <form action="" method="post">
     <table border="1">
         {{ form }}

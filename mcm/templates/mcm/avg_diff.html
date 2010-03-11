@@ -1,0 +1,23 @@
+<p align="center"> FINAL MONTHLY REPORT </p>
+
+<table align="center" border="1">
+    <tr>
+        <td>Monthly Total - £{{ total }}</td> <td>Average - £{{ avg }}</td>
+    </tr>
+</table>
+
+<table border="1" align="center">
+    <tr>
+        <th>User</th>
+        <th>Monthly Spent</th>
+        <th>Difference</th>
+    </tr>
+{% for user, data in avg_diff.items %}
+    <tr>
+        <td>{{ user }}</td>
+        <td align="right">£{{ data.total }}</td>
+        <td align="right">£{{ data.diff }}</td>
+    </tr>
+{% endfor %}
+</table>
+

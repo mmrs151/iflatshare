@@ -63,12 +63,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.auth',
+)
+
 ROOT_URLCONF = 'cost_management.urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
     "/Users/mrahma01/Dev/cost_management/templates"
     "/Users/mrahma01/Dev/cost_management/mcm/templates"
 )
@@ -81,3 +82,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'cost_management.mcm'
 )
+
+LOGIN_REDIRECT_URL = '/mcm/item'
