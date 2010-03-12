@@ -116,7 +116,7 @@
     is_active: true
     is_staff: true
     is_superuser: true
-    last_login: 2010-03-02 10:51:35
+    last_login: 2010-03-12 03:34:00.358367
     last_name: ''
     password: sha1$805b6$333aba179ea9051396499fb853d946a3c2230776
     user_permissions: []
@@ -133,7 +133,7 @@
     is_superuser: false
     last_login: 2010-03-02 11:20:22
     last_name: ''
-    password: rocky
+    password: sha1$fdfd9$4731c44e8aeafc37626633c59f4520a988f21d49
     user_permissions: []
     username: rocky
   model: auth.user
@@ -148,7 +148,7 @@
     is_superuser: false
     last_login: 2010-03-08 08:20:46
     last_name: ''
-    password: anu
+    password: sha1$bc623$c77a8400dc036825777e4d11a0cf6aa28366f60c
     user_permissions: []
     username: anu
   model: auth.user
@@ -163,7 +163,7 @@
     is_superuser: false
     last_login: 2010-03-10 05:09:54
     last_name: ''
-    password: roman
+    password: sha1$eb951$bddc8d566a0922904c634bb943720ac9c0415795
     user_permissions: []
     username: roman
   model: auth.user
@@ -178,7 +178,7 @@
     is_superuser: false
     last_login: 2010-03-10 05:10:18
     last_name: ''
-    password: steve
+    password: sha1$a853e$f047a1b5689e24ede1e0c8b2835f2542ed7e20b6
     user_permissions: []
     username: steve
   model: auth.user
@@ -228,6 +228,15 @@
       '}
   model: sessions.session
   pk: a45cc7ac2de16b15556de3ebc9ce0e6e
+- fields: {expire_date: !!timestamp '2010-03-26 03:34:00.376625', session_data: 'gAJ9cQEoVRJfYXV0aF91c2VyX2JhY2tlbmRxAlUpZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5k
+
+      cy5Nb2RlbEJhY2tlbmRxA1UNX2F1dGhfdXNlcl9pZHEESwF1LmY3NmU1YjRmMWVlMWQ0YjFjMjVm
+
+      ZGM2OTI4MmRiMDcz
+
+      '}
+  model: sessions.session
+  pk: 3bcfa501ce7d1f87ace2e82cf4163cd1
 - fields: {domain: example.com, name: example.com}
   model: sites.site
   pk: 1
@@ -311,36 +320,36 @@
 - fields: {name: Misc}
   model: mcm.category
   pk: 4
-- fields: {category: 1, date: 2010-03-04, name: Eggs, price: '1.2', user: 2}
+- fields: {category: 1, name: Eggs, price: '1.2', purchase_date: 2010-03-04, user: 2}
   model: mcm.item
   pk: 1
-- fields: {category: 1, date: 2010-03-04, name: 'tea, suger, milk, eve milk, mayo',
-    price: '8.68', user: 2}
+- fields: {category: 1, name: 'tea, suger, milk, eve milk, mayo', price: '8.68', purchase_date: 2010-03-04,
+    user: 2}
   model: mcm.item
   pk: 2
-- fields: {category: 1, date: 2010-02-04, name: carrots, price: '3.2', user: 2}
+- fields: {category: 1, name: carrots, price: '3.2', purchase_date: 2010-02-04, user: 2}
   model: mcm.item
   pk: 3
-- fields: {category: 1, date: 2010-01-04, name: pepper, price: '1.12', user: 2}
+- fields: {category: 1, name: pepper, price: '1.12', purchase_date: 2010-01-04, user: 2}
   model: mcm.item
   pk: 4
-- fields: {category: 1, date: 2009-01-04, name: banana, price: '1.2', user: 2}
+- fields: {category: 1, name: banana, price: '1.2', purchase_date: 2009-01-04, user: 2}
   model: mcm.item
   pk: 5
-- fields: {category: 1, date: 2009-03-04, name: potato, price: '2.12', user: 2}
+- fields: {category: 1, name: potato, price: '2.12', purchase_date: 2009-03-04, user: 2}
   model: mcm.item
   pk: 6
-- fields: {category: 2, date: 2010-03-09, name: 'washing liquid, hand wash, bin bag',
-    price: '4.67', user: 3}
+- fields: {category: 2, name: 'washing liquid, hand wash, bin bag', price: '4.67',
+    purchase_date: 2010-03-09, user: 3}
   model: mcm.item
   pk: 7
-- fields: {category: 1, date: 2010-03-09, name: sweet, price: '5', user: 3}
+- fields: {category: 1, name: sweet, price: '5', purchase_date: 2010-03-09, user: 3}
   model: mcm.item
   pk: 8
-- fields: {category: 2, date: 2010-03-10, name: Heater, price: '37', user: 4}
+- fields: {category: 2, name: Heater, price: '37', purchase_date: 2010-03-10, user: 4}
   model: mcm.item
   pk: 9
-- fields: {category: 1, date: 2010-03-10, name: 'Beans, butter, salmon', price: '12.34',
+- fields: {category: 1, name: 'Beans, butter, salmon', price: '12.34', purchase_date: 2010-03-10,
     user: 5}
   model: mcm.item
   pk: 10

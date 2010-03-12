@@ -49,6 +49,14 @@ class AddressTestCase(TestCase):
         address = Address.objects.all()[0]
         self.failUnlessEqual(str(address.monthly_transaction(2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: washing liquid, hand wash, bin bag>, <Item: sweet>]')
 
+    def test_category_summery(self):
+        """
+        Test Monthly Category summery for an address
+        """
+        address = Address.objects.all()[0]
+        summery = dict((c.name, c.item__price__sum) for c in address.category_summery(2010, 3))
+        self.failUnlessEqual(summery, {u'Grocery': Decimal('14.88'), u'HouseHold': Decimal('4.67')})
+
 class UserTestCase(TestCase):
     fixtures = ['test_data']
     
@@ -65,3 +73,12 @@ class UserTestCase(TestCase):
         """
         user = User.objects.get(username__exact='rocky')
         self.failUnlessEqual(str(user.monthly_transaction(2010,3)), '[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
+
+    def test_is_housemate_of(self):
+        rocky = User.objects.get(username='rocky')
+        anu = User.objects.get(username='anu')
+        roman = User.objects.get(username='roman')
+        self.assertTrue(anu.is_housemate_of(rocky))
+        self.assertTrue(rocky.is_housemate_of(anu))
+        self.assertFalse(rocky.is_housemate_of(roman))
+

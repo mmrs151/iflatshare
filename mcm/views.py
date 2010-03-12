@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext, Context, loader
 from forms import ItemForm
 from cost_management.mcm.models import *
@@ -32,7 +32,8 @@ def monthly(request, year, month):
 
 @login_required
 def avg_diff(request, year, month):
-    address = Address.objects.all()[1]
+    user = User.objects.get_from_auth_user(request.user)
+    address = user.address
     total = address.monthly_total(year, month)
     avg = address.monthly_avg(year, month)
     users = address.user_set.all()
@@ -42,8 +43,16 @@ def avg_diff(request, year, month):
 @login_required
 def user_transaction(request, user_name, year, month):
     user = User.objects.get(username__iexact=user_name)
+    logged_in_user = User.objects.get_from_auth_user(request.user)
+    if not logged_in_user.is_housemate_of(user):
+        return HttpResponseForbidden("<h1>You are not authorised to view this page</h1>")
     item_list = user.monthly_transaction(year, month)
     monthly_total = user.monthly_total(year, month)
     return render_to_response('mcm/monthly_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name},context_instance=RequestContext(request))
 
- 
+@login_required
+def monthly_category(request, year, month):
+    user = User.objects.get_from_auth_user(request.user)
+    address = user.address
+    summery = address.category_summery(year, month)
+    return render_to_response('mcm/monthly_category.html',{'summery':summery},context_instance=RequestContext(request))

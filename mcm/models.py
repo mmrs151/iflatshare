@@ -29,6 +29,9 @@ class Address(models.Model):
     def monthly_transaction(self, year, month):
         return Item.objects.monthly_transaction(year, month).filter(user__address=self)
 
+    def category_summery(self, year, month):
+        return Category.objects.filter(item__purchase_date__year=year, item__purchase_date__month=month, item__user__address=self).annotate(Sum('item__price'))
+        
 class UserManager(models.Manager):
     def get_from_auth_user(self, user):
         return self.get_query_set().get(pk=user.pk)
@@ -42,10 +45,14 @@ class User(AuthUser):
         return self.address.user_set.all()
 
     def monthly_total(self, year, month):
-        return self.item_set.filter(date__year=year, date__month=month).aggregate(Sum('price'))['price__sum']
+        return self.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
 
     def monthly_transaction(self, year, month):
-        return self.item_set.filter(date__year=year, date__month=month)
+        return self.item_set.filter(purchase_date__year=year, purchase_date__month=month)
+
+    def is_housemate_of(self, other_user):
+        assert(isinstance(other_user, User))
+        return self in other_user.get_housemates()
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -58,14 +65,14 @@ class ItemManager(models.Manager):
         return self.monthly_transaction(year, month).aggregate(Sum('price'))['price__sum']
 
     def monthly_transaction(self, year, month):
-        return self.get_query_set().filter(date__year=year, date__month=month)
+        return self.get_query_set().filter(purchase_date__year=year, purchase_date__month=month)
 
 class Item(models.Model):
     category = models.ForeignKey(Category)
     user = models.ForeignKey(User)
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4, decimal_places=2)
-    date = models.DateField(auto_now=True)
+    purchase_date = models.DateField(auto_now=True)
 
     objects = ItemManager()
 

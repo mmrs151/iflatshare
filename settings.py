@@ -70,7 +70,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ROOT_URLCONF = 'cost_management.urls'
 
 TEMPLATE_DIRS = (
-    "/Users/mrahma01/Dev/cost_management/templates"
+    "/Users/mrahma01/Dev/cost_management/templates",
     "/Users/mrahma01/Dev/cost_management/mcm/templates"
 )
 

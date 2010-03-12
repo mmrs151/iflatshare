@@ -7,7 +7,7 @@
     </tr>
         {% for item in item_list %}
     <tr>
-        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.date }}</td><td>{{ item.category }}</td><td align="right"><a href=/mcm/user/{{item.user}}/{{year}}/{{month}}>{{ item.user }}</a></td>
+        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{ item.category }}</td><td align="right"><a href=/mcm/user/{{item.user}}/{{year}}/{{month}}>{{ item.user }}</a></td>
     </tr>
 {% endfor %}
     <tr>
