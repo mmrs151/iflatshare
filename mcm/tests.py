@@ -57,6 +57,14 @@ class AddressTestCase(TestCase):
         summery = dict((c.name, c.item__price__sum) for c in address.category_summery(2010, 3))
         self.failUnlessEqual(summery, {u'Grocery': Decimal('14.88'), u'HouseHold': Decimal('4.67')})
 
+    def test_category_transaction(self):
+        """
+        Test monthly transaction by category
+        """
+        address = Address.objects.all()[0]
+        self.failUnlessEqual(str(address.category_transaction(2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: sweet>]')
+
+ 
 class UserTestCase(TestCase):
     fixtures = ['test_data']
     

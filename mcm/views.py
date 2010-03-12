@@ -56,3 +56,8 @@ def monthly_category(request, year, month):
     address = user.address
     summery = address.category_summery(year, month)
     return render_to_response('mcm/monthly_category.html',{'summery':summery},context_instance=RequestContext(request))
+
+
+@login_required
+def category_transaction(request, category_name, year, month):
+    return render_to_response('mcm/category_transaction.html')

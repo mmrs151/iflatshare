@@ -83,4 +83,4 @@ INSTALLED_APPS = (
     'cost_management.mcm'
 )
 
-LOGIN_REDIRECT_URL = '/mcm/item'
+LOGIN_REDIRECT_URL = '/mcm/'
