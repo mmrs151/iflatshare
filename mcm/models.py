@@ -31,7 +31,10 @@ class Address(models.Model):
 
     def category_summery(self, year, month):
         return Category.objects.filter(item__purchase_date__year=year, item__purchase_date__month=month, item__user__address=self).annotate(Sum('item__price'))
-        
+    
+    def category_transaction(self,category, year, month):
+        return self.monthly_transaction(year, month).filter(category__name=category)
+
 class UserManager(models.Manager):
     def get_from_auth_user(self, user):
         return self.get_query_set().get(pk=user.pk)

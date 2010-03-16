@@ -1,13 +1,15 @@
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
 {% endif %}
+<p><strong>Purchage history of {{ user_name }}</strong></p>
+
 <table border="1" cellpadding="5">
     <tr>
-        <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>Category</td><td>User Name</td>
+        <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>Category</td>
     </tr>
         {% for item in item_list %}
     <tr>
-        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{ item.category }}</td><td align="right"><a href=/mcm/user/{{item.user}}/{{year}}/{{month}}>{{ item.user }}</a></td>
+        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{ item.category }}</td>    
     </tr>
 {% endfor %}
     <tr>

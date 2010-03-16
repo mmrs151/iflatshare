@@ -28,7 +28,7 @@ def monthly(request, year, month):
     address = user.address
     item_list = address.monthly_transaction(year, month)
     monthly_total = address.monthly_total(year, month)
-    return render_to_response('mcm/item_list.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
+    return render_to_response('mcm/monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
 
 @login_required
 def avg_diff(request, year, month):
@@ -48,7 +48,7 @@ def user_transaction(request, user_name, year, month):
         return HttpResponseForbidden("<h1>You are not authorised to view this page</h1>")
     item_list = user.monthly_transaction(year, month)
     monthly_total = user.monthly_total(year, month)
-    return render_to_response('mcm/monthly_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name},context_instance=RequestContext(request))
+    return render_to_response('mcm/user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name},context_instance=RequestContext(request))
 
 @login_required
 def monthly_category(request, year, month):
@@ -60,4 +60,8 @@ def monthly_category(request, year, month):
 
 @login_required
 def category_transaction(request, category_name, year, month):
-    return render_to_response('mcm/category_transaction.html')
+    user = User.objects.get_from_auth_user(request.user)
+    address = user.address
+    category_transaction = address.category_transaction(category_name, year, month)
+    summery = address.category_summery(year, month)
+    return render_to_response('mcm/category_transaction.html',{'year':year, 'month':month, 'summery':summery,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
