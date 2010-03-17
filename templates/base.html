@@ -42,18 +42,19 @@
              <div id="header">
              
                     <h1><a href="/mcm"><span>. . .</span>FlatShare</a></h1>
-                    
+                    {% block menu %}
                      <div id="menu">
                 
                         <ul>	
                             <li><a href="/mcm/item">Item</a></li>
                             <li><a href="/mcm/user/{{user.username}}/{% now "Y"%}/{% now "m"%}">User</a></li>
                             <li><a href="/mcm/monthly/{% now "Y"%}/{% now "m"%}">Month</a></li>
-                            <li class="selected"><a href="/mcm/avg_diff/{% now "Y"%}/{% now "m"%}">Final</a></li>
-                            <li><a href="/accounts/logout/">Logout</a></li>
+                            <li><a href="/mcm/avg_diff/{% now "Y"%}/{% now "m"%}">Final</a></li>
+                            <li class="selected"><a href="/accounts/logout/">Logout</a></li>
                         </ul>
                     
                 	</div><!-- menu -->
+                    {% endblock %}
                 
              </div><!--header-->
          {% endblock %}

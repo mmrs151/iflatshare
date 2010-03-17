@@ -1,33 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
-{% endif %}
 
-<h3> Monthly Category Transaction Report for {{ category }} </h3>
-
-<table cellpadding="15"><tr><td>
-<table border="1" cellpadding="5">
-    <tr>
+<h2> Monthly Category Transaction Report for {{ category }} </h2>
+<br />
+<table width="700px"><tr><td>
+<table border="1" cellpadding="5" width="500px">
+    <tr bgcolor="#000000" align="center">
         <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>User Name</td>
     </tr>
         {% for item in category_transaction %}
-    <tr>
-        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{item.user}}</td>
+    <tr bgcolor="#336666" align="center">
+        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{item.user}}</td>
     </tr>
 {% endfor %}
 </table>
 </td>
 <td bgcolor="lightblue" valign="top">
-<table border="1" cellpadding="5">
+<table border="1" cellpadding="5" width="200px">
+<tr bgcolor="#000000" align="center">
     <th>Category Name</th><th>Total Spent</th>
+</tr>
     {% for item in summery %}
-    <tr>
-        <td><a href="/mcm/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td align="right">£{{ item.item__price__sum }}</td>
+    <tr bgcolor="#336666" align="center">
+        <td align="left"><a href="/mcm/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td>£{{ item.item__price__sum }}</td>
     </tr>
     {% endfor %}
 </table>
 </td></tr></table>
+<br />
 {% endblock %}
 
 {% block footer %}
