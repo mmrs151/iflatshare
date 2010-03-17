@@ -40,7 +40,7 @@ MEDIA_ROOT = '/Users/mrahma01/Dev/cost_management/media'
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = 'http://media.local/'
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -83,4 +83,4 @@ INSTALLED_APPS = (
     'cost_management.mcm'
 )
 
-LOGIN_REDIRECT_URL = '/mcm/'
+LOGIN_REDIRECT_URL = '/mcm/item'

@@ -1,9 +1,11 @@
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
-{% endif %}
+{% extends "base.html" %}
+{% block content %}
 <form action="" method="post">
     <table border="1">
         {{ form }}
+        <tr>
+            <td colspan="2" align="right"><input type="submit" value="Add Item" /></td>
+        </tr>
     </table>
-    <p><input type="submit" value="Add Item" /></p>
 </form>
+{% endblock %}

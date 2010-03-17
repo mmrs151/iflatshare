@@ -1,8 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
 {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
 {% endif %}
 
-<h1> Monthly Category Transaction Report for {{ category }} </h1>
+<h3> Monthly Category Transaction Report for {{ category }} </h3>
 
 <table cellpadding="15"><tr><td>
 <table border="1" cellpadding="5">
@@ -26,3 +28,9 @@
     {% endfor %}
 </table>
 </td></tr></table>
+{% endblock %}
+
+{% block footer %}
+<hr>
+am I a footer 
+{% endblock %}

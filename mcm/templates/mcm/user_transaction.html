@@ -1,18 +1,18 @@
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
-{% endif %}
-<p><strong>Purchage history of {{ user_name }}</strong></p>
+{% extends "base.html" %}
+{% block content %}
+<h2><strong>Purchage history of {{ user_name }}</strong></h2>
 
-<table border="1" cellpadding="5">
-    <tr>
+<table border="1" cellpadding="5" width="500px">
+    <tr bgcolor="#000000" align="center">
         <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>Category</td>
     </tr>
         {% for item in item_list %}
-    <tr>
-        <td>{{item.name}}</td><td align="right">{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{ item.category }}</td>    
+    <tr bgcolor="#336666" align="center">
+        <td align="left">{{item.name}}</td><td>£{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{ item.category }}</td>    
     </tr>
 {% endfor %}
     <tr>
-        <td align="center"><strong>TOTAL</strong></td><td colspan="4" align="center"><strong>{{ monthly_total }}</strong></td>
+        <td align="center"><strong>TOTAL</strong></td><td colspan="4" align="center"><strong>£{{ monthly_total }}</strong></td>
     </tr>
 </table>
+{% endblock %}

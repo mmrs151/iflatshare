@@ -1,14 +1,11 @@
-{% block page_title %}<a href="/accounts/logout/">Logout</a>{% endblock %}
-
-{% block page_header %}
-<h1>Log In</h1>
-{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-
+<h2>Log In</h2>
+<br />
     <form method="post" action="">
-        <table cellspacing="0">{{ form }}</table>
-        <p><input type="submit" value="Log In" /></p>
+        <table cellspacing="0">{{ form }}
+        <tr><td colspan="2" align="right"><input type="submit" value="Log In" /></td></tr>
+        </table>
     </form>
 
 {% endblock %}

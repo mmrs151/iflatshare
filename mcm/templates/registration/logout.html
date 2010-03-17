@@ -1,10 +1,9 @@
-{% block page_title %}Logged Out{% endblock %}
-
-{% block page_header %}
-<h1>Logged Out</h1>
-{% endblock %}
-
+{% extends "base.html" %}
 {% block content %}
-<p>You are now logged out from Prism Scene.</p>
-<p><a href="/accounts/login/" title="Log In">Log in again?</a></p>
+
+<h2>Logged Out</h2>
+<br />
+<p>You are now logged out from Cost Management.</p>
+<br />
+<h3><strong><a href="/accounts/login/" title="Log In">Log in again?</a></strong></h3>
 {% endblock %}

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Design Portfolio Template</title>
+<link rel="stylesheet" type="text/css" href="/site_media/style.css" />
+<script type='text/javascript' src='http://vectorart.org/wp-content/themes/vector/images/jquery.js'></script> 
+
+</head>
+
+<body>
+
+
+<div id="top">
+	<div id="insidetop">
+        <h4>Drop Down Menu</h4>
+        
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Lorem 			   		ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod temporall</p>
+        
+        <h5><a href="#">Your Site Here</a></h5>
+        <h5><a href="#">Your Site Here</a></h5>
+        <h5><a href="#">Your Site Here</a></h5>
+        <h5><a href="#">Your Site Here</a></h5>
+        <h5><a href="#">Your Site Here</a></h5>
+        
+    </div><!--insidetop-->
+</div><!-- top -->
+
+<div id="topline">	
+	<div class="content">
+    {% if user.is_authenticated %}
+       <a><strong><p>Welcome, {{ user.username|upper }}</p></strong></a>
+    {% endif %}
+    </div>
+</div><!-- topline -->
+
+
+<div id="wrapper">
+
+    	<div class="content">
+    	{% block header %}
+             <div id="header">
+             
+                    <h1><a href="/mcm"><span>. . .</span>FlatShare</a></h1>
+                    
+                     <div id="menu">
+                
+                        <ul>	
+                            <li><a href="/mcm/item">Item</a></li>
+                            <li><a href="/mcm/user/{{user.username}}/{% now "Y"%}/{% now "m"%}">User</a></li>
+                            <li><a href="/mcm/monthly/{% now "Y"%}/{% now "m"%}">Month</a></li>
+                            <li class="selected"><a href="/mcm/avg_diff/{% now "Y"%}/{% now "m"%}">Final</a></li>
+                            <li><a href="/accounts/logout/">Logout</a></li>
+                        </ul>
+                    
+                	</div><!-- menu -->
+                
+             </div><!--header-->
+         {% endblock %}
+             {% block content %}
+             
+             {% endblock %}
+
+        </div><!--content-->
+        
+    </div><!--wrapper-->
+ 
+{% block footer %} 
+    
+{% endblock %}    
+<script type='text/javascript'>
+$(document).ready(function(){
+
+	$("div#topline a").click(function(){
+	  $("#top").slideToggle("slow");
+	  $(this).toggleClass("active");
+	});		
+
+});		
+</script>    
+</body>
+</html>

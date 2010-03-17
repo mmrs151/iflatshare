@@ -7,8 +7,10 @@ import datetime
 from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request):
-    return render_to_response('mcm/index.html')
+    user = User.objects.get_from_auth_user(request.user)
+    return render_to_response('base.html',{},context_instance=RequestContext(request))
 
 @login_required
 def item(request):
