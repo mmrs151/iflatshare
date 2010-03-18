@@ -1,11 +1,11 @@
 from django.forms import ModelForm
 from django import forms
-from models import Item, User
+from models import Item
 
 class ItemForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['user'].queryset = user.get_housemates()
+        self.fields['user'].queryset = user.profile.get_housemates()
 
     name = forms.CharField(widget=forms.Textarea)
 

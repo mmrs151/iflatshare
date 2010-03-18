@@ -76,11 +76,20 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'cost_management.mcm'
+    'cost_management.mcm',
+    'registration'
 )
+
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST='localhost'
+EMAIL_PORT=1023
+EMAIL_HOST_USER='username'
+EMAIL_HOST_PASSWORD='password'
+AUTH_PROFILE_MODULE = 'mcm.Profile'
 
 LOGIN_REDIRECT_URL = '/mcm/item'

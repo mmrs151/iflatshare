@@ -18,44 +18,41 @@ class Address(models.Model):
         unique_together = (("house_number", "post_code"))
     
     def monthly_avg(self, year, month):
-        total_user = self.user_set.count()
+        total_user = AuthUser.objects.filter(profile__address=self).count()
         monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
         return monthly_avg
 
     def monthly_total(self, year, month):
-        return Item.objects.monthly_transaction(year, month).filter(user__address=self).\
+        return Item.objects.monthly_transaction(year, month).filter(user__profile__address=self.pk).\
                 aggregate(Sum('price'))['price__sum']
 
     def monthly_transaction(self, year, month):
-        return Item.objects.monthly_transaction(year, month).filter(user__address=self)
+        return Item.objects.monthly_transaction(year, month).filter(user__profile__address=self)
 
-    def category_summery(self, year, month):
-        return Category.objects.filter(item__purchase_date__year=year, item__purchase_date__month=month, item__user__address=self).annotate(Sum('item__price'))
+    def category_summary(self, year, month):
+        return Category.objects.filter(item__purchase_date__year=year, item__purchase_date__month=month, item__user__profile__address=self).annotate(Sum('item__price'))
     
     def category_transaction(self,category, year, month):
         return self.monthly_transaction(year, month).filter(category__name=category)
 
-class UserManager(models.Manager):
-    def get_from_auth_user(self, user):
-        return self.get_query_set().get(pk=user.pk)
-
-class User(AuthUser):
+class Profile(models.Model):
+    user = models.OneToOneField(AuthUser)
     address = models.ForeignKey(Address)
-
-    objects = UserManager()
+    
+    def __unicode__(self):
+        return u'%s, %s' % (unicode(self.user), unicode(self.address))
     
     def get_housemates(self):
-        return self.address.user_set.all()
+        return AuthUser.objects.filter(profile__address=self.address)
 
     def monthly_total(self, year, month):
-        return self.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
+        return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
 
     def monthly_transaction(self, year, month):
-        return self.item_set.filter(purchase_date__year=year, purchase_date__month=month)
+        return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month)
 
     def is_housemate_of(self, other_user):
-        assert(isinstance(other_user, User))
-        return self in other_user.get_housemates()
+        return self.address == other_user.profile.address
 
 class Category(models.Model):
     name = models.CharField(max_length=200)
@@ -72,7 +69,7 @@ class ItemManager(models.Manager):
 
 class Item(models.Model):
     category = models.ForeignKey(Category)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(AuthUser)
     name = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=4, decimal_places=2)
     purchase_date = models.DateField(auto_now=True)
