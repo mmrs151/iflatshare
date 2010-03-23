@@ -1,6 +1,6 @@
 from django.forms import ModelForm
 from django import forms
-from models import Item
+from models import Item, Address
 
 class ItemForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -11,3 +11,8 @@ class ItemForm(ModelForm):
 
     class Meta:
         model = Item
+
+class AddressForm(ModelForm):
+    class Meta:
+        model = Address
+

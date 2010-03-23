@@ -90,4 +90,7 @@ class UserTestCase(TestCase):
         self.assertTrue(anu.profile.is_housemate_of(rocky))
         self.assertTrue(rocky.profile.is_housemate_of(anu))
         self.assertFalse(rocky.profile.is_housemate_of(roman))
-
+    
+    def test_has_address(self):
+        rocky = User.objects.get(username='rocky')
+        self.assertTrue(rocky.profile.has_address())

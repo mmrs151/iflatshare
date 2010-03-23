@@ -85,11 +85,11 @@ INSTALLED_APPS = (
     'registration'
 )
 
-ACCOUNT_ACTIVATION_DAYS=7
-EMAIL_HOST='localhost'
-EMAIL_PORT=1023
-EMAIL_HOST_USER='username'
-EMAIL_HOST_PASSWORD='password'
+ACCOUNT_ACTIVATION_DAYS = 2
+EMAIL_HOST = 'localhost'
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+EMAIL_PORT = 25
+
 AUTH_PROFILE_MODULE = 'mcm.Profile'
 
 LOGIN_REDIRECT_URL = '/mcm/item'

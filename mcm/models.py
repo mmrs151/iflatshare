@@ -37,7 +37,7 @@ class Address(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(AuthUser)
-    address = models.ForeignKey(Address)
+    address = models.ForeignKey(Address, blank=True, null=True)
     
     def __unicode__(self):
         return u'%s, %s' % (unicode(self.user), unicode(self.address))
@@ -53,6 +53,10 @@ class Profile(models.Model):
 
     def is_housemate_of(self, other_user):
         return self.address == other_user.profile.address
+
+    def has_address(self):
+        return self.address is not None
+    
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

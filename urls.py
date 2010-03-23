@@ -2,6 +2,7 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
 from django.views.generic.simple import direct_to_template
+from mcm.models import Profile
 
 
 
@@ -14,6 +15,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'registration/logout.html'}),
+    url( r'^accounts/register/$','registration.views.register',{ 'profile_callback': Profile.objects.create }, name = 'registration_register' ),
     (r'^accounts/', include('registration.urls')),    
 )
 
