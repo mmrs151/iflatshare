@@ -88,5 +88,5 @@ def edit_address(request):
                 return HttpResponseRedirect('/mcm/item/')
     else:
         form = AddressForm(instance=address)
-    return render_to_response('mcm/address.html', {'form': form})
+    return render_to_response('mcm/address.html', {'form': form}, context_instance=RequestContext(request))
 

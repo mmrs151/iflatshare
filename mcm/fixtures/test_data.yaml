@@ -31,11 +31,11 @@
     user: 5}
   model: mcm.item
   pk: 10
-- fields: {city: London, country: UK, house_number: 116A, passcode: burnt, post_code: HA8
+- fields: {city: London, country: UK, house_number: 116A, post_code: HA8
       0BB, street_name: Burnt Oak Broaway}
   model: mcm.address
   pk: 1
-- fields: {city: London, country: UK, house_number: '11', passcode: camrose, post_code: HA8
+- fields: {city: London, country: UK, house_number: '11', post_code: HA8
       7SX, street_name: Camrose Avenue}
   model: mcm.address
   pk: 2

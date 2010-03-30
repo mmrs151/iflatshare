@@ -9,7 +9,6 @@ class Address(models.Model):
     street_name = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
-    passcode = models.CharField(max_length=8)
 
     def __unicode__(self):
         return self.house_number
@@ -35,9 +34,15 @@ class Address(models.Model):
     def category_transaction(self,category, year, month):
         return self.monthly_transaction(year, month).filter(category__name=category)
 
+class ProfileManager(models.Manager):
+    def create_from_user(self, user):
+        self.create(user=user)
+
 class Profile(models.Model):
     user = models.OneToOneField(AuthUser)
     address = models.ForeignKey(Address, blank=True, null=True)
+
+    objects = ProfileManager()
     
     def __unicode__(self):
         return u'%s, %s' % (unicode(self.user), unicode(self.address))
@@ -56,6 +61,9 @@ class Profile(models.Model):
 
     def has_address(self):
         return self.address is not None
+
+    def was_invited(self):
+        pass
     
 
 class Category(models.Model):

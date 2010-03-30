@@ -2,7 +2,7 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
+<form method="post" action="/accounts/register/?invitation_key={{ invitation_key }}">
 <table>
   {{ form }}
 </table>

@@ -21,11 +21,11 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Europe/London'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-GB'
 
 SITE_ID = 1
 
@@ -82,7 +82,8 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'cost_management.mcm',
-    'registration'
+    'registration',
+    'invitation'
 )
 
 ACCOUNT_ACTIVATION_DAYS = 2
@@ -90,6 +91,10 @@ EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 EMAIL_PORT = 25
 
+ACCOUNT_INVITATION_DAYS = 2
+INVITATIONS_PER_USER = 10
 AUTH_PROFILE_MODULE = 'mcm.Profile'
 
 LOGIN_REDIRECT_URL = '/mcm/item'
+
+INVITE_MODE = True

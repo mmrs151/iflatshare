@@ -5,7 +5,6 @@ from django.views.generic.simple import direct_to_template
 from mcm.models import Profile
 
 
-
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -15,7 +14,8 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'registration/logout.html'}),
-    url( r'^accounts/register/$','registration.views.register',{ 'profile_callback': Profile.objects.create }, name = 'registration_register' ),
+    url( r'^accounts/register/$','invitation.views.register',{ 'profile_callback': Profile.objects.create_from_user }),    
+    (r'^accounts/', include('invitation.urls')),
     (r'^accounts/', include('registration.urls')),    
 )
 
