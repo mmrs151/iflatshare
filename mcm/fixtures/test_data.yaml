@@ -115,6 +115,21 @@
     username: steve
   model: auth.user
   pk: 5
+- fields:
+    date_joined: 2010-03-30 11:09:40.284453
+    email: sumon_6357@yahoo.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-30 11:09:58.073721
+    last_name: ''
+    password: sha1$7797a$315282210cacff87af75e837e2b9c5d2c828aed5
+    user_permissions: []
+    username: sumon
+  model: auth.user
+  pk: 6
 
 - fields: {address: 1, user: 2}
   model: mcm.profile
@@ -128,4 +143,12 @@
 - fields: {address: 2, user: 5}
   model: mcm.profile
   pk: 4
+- fields: {address: null, user: 6}
+  model: mcm.profile
+  pk: 5
+
+- fields: {date_invited: !!timestamp '2010-03-30 11:09:19.015948', from_user: 2, key: 2ebfee0214462f3afc2048b2b8206232cef26c36,
+    registrant: 6}
+  model: invitation.invitationkey
+  pk: 1
 

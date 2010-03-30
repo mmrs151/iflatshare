@@ -94,3 +94,13 @@ class UserTestCase(TestCase):
     def test_has_address(self):
         rocky = User.objects.get(username='rocky')
         self.assertTrue(rocky.profile.has_address())
+    
+    def test_was_invited(self):
+        rocky = User.objects.get(username='rocky')
+        sumon = User.objects.get(username='sumon')
+        self.assertFalse(rocky.profile.was_invited())
+        self.assertTrue(sumon.profile.was_invited())
+
+    def test_from_user_address(self):
+        sumon = User.objects.get(username='sumon')
+        self.failUnlessEqual(str(sumon.profile.from_user_address()), '116A')

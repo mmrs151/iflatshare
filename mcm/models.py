@@ -1,7 +1,11 @@
 from django.db import models
+from invitation.models import InvitationKey
 from django.contrib.auth.models import User as AuthUser
 from django.db.models import Sum
 from decimal import Decimal
+from django.db.models.signals import post_save
+from cost_management.mcm import signals as custom_signals
+
 
 class Address(models.Model):
     house_number = models.CharField(max_length=200)
@@ -63,8 +67,17 @@ class Profile(models.Model):
         return self.address is not None
 
     def was_invited(self):
-        pass
+        try:
+            invited = InvitationKey.objects.get(registrant=self.user)
+            return True
+        except InvitationKey.DoesNotExist:
+            return False
+
+    def from_user_address(self):
+        key = InvitationKey.objects.get(registrant=self.user)
+        return key.from_user.profile.address
     
+post_save.connect(custom_signals.assign_address, sender=Profile)
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

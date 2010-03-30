@@ -7,7 +7,6 @@ from django.contrib.auth.models import User
 import datetime
 from django.contrib.auth.decorators import login_required
 
-
 @login_required
 def index(request):
     return render_to_response('base.html',{},context_instance=RequestContext(request))
