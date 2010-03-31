@@ -21,13 +21,18 @@ class Address(models.Model):
         unique_together = (("house_number", "post_code"))
     
     def monthly_avg(self, year, month):
-        total_user = AuthUser.objects.filter(profile__address=self).count()
-        monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
+        try:
+            total_user = AuthUser.objects.filter(profile__address=self).count()
+            monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
+        except TypeError:
+            monthly_avg =0
         return monthly_avg
 
     def monthly_total(self, year, month):
-        return Item.objects.monthly_transaction(year, month).filter(user__profile__address=self.pk).\
-                aggregate(Sum('price'))['price__sum']
+        queryset = Item.objects.monthly_transaction(year, month).filter(user__profile__address=self.pk)
+        if not queryset:
+            return 0
+        return queryset.aggregate(Sum('price'))['price__sum']
 
     def monthly_transaction(self, year, month):
         return Item.objects.monthly_transaction(year, month).filter(user__profile__address=self)
@@ -55,7 +60,10 @@ class Profile(models.Model):
         return AuthUser.objects.filter(profile__address=self.address)
 
     def monthly_total(self, year, month):
-        return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
+        queryset = self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
+        if queryset is None:
+            return 0
+        return queryset
 
     def monthly_transaction(self, year, month):
         return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month)
