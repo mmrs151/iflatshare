@@ -4,6 +4,7 @@ DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
+    ('Muhammad Rahman', 'muhammad.rahman@aemedia.com'),
     # ('Your Name', 'your_email@domain.com'),
 )
 
@@ -83,7 +84,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'cost_management.mcm',
     'registration',
-    'invitation'
+    'invitation',
+    'contact_form'
 )
 
 ACCOUNT_ACTIVATION_DAYS = 2
@@ -91,7 +93,7 @@ EMAIL_HOST = 'localhost'
 DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 EMAIL_PORT = 25
 
-ACCOUNT_INVITATION_DAYS = 2
+ACCOUNT_INVITATION_DAYS = 10
 INVITATIONS_PER_USER = 10
 AUTH_PROFILE_MODULE = 'mcm.Profile'
 

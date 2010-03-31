@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
 from django.views.generic.simple import direct_to_template
 from mcm.models import Profile
-
+from contact_form.forms import AkismetContactForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -17,7 +17,9 @@ urlpatterns = patterns('',
     url( r'^accounts/register/create/$','registration.views.register',{ 'profile_callback': Profile.objects.create }), 
     url( r'^accounts/register/$','invitation.views.register',{ 'profile_callback': Profile.objects.create_from_user }),
     (r'^accounts/', include('invitation.urls')),
-    (r'^accounts/', include('registration.urls')),    
+    (r'^accounts/', include('registration.urls')),
+    url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': AkismetContactForm}, name='contact_form'),
+    (r'^contact/', include('contact_form.urls'))
 )
 
 if settings.DEBUG:

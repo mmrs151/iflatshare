@@ -5,7 +5,11 @@
 <form method="post" action="./?invitation_key={{ invitation_key }}">
 <table>
   {{ form }}
+  <tr>
+    <td colspan="2" style="text-align:right">
+        <input type="submit" value="{% trans 'Submit' %}" />
+    </td>
+  </tr>
 </table>
-  <input type="submit" value="{% trans 'Submit' %}" />
 </form>
 {% endblock %}

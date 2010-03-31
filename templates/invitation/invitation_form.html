@@ -4,13 +4,16 @@
 {% block content %}
 
 <h2>{% trans "Invite a friend" %}</h2>
-
+<br />
 <form action="{% url invitation_invite %}" method="POST">
 <table>
-{{form.as_table}}
+{{form}}
+<tr>
+    <td style="text-align:right"><input type="submit" value="{% trans "Send Invitation" %}" />
+    </td>
+</tr>
 </table>
 
-<input type="submit" value="{% trans "Send Invitation" %}" />
 </form>
 
 
