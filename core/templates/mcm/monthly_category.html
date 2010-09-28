@@ -1,0 +1,12 @@
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
+{% endif %}
+<h1>Monthly Category Report</h1>
+<table border="1" cellpadding="5">
+    <th>Category Name</th><th>Total Spent</th>
+    {% for item in summery %}
+    <tr>
+        <td>{{ item }}</td><td align="right">£{{ item.item__price__sum }}</td>
+    </tr>
+    {% endfor %}
+</table>

@@ -1,0 +1,154 @@
+- fields: {category: 1, name: Eggs, price: '1.2', purchase_date: 2010-03-04, user: 2}
+  model: core.item
+  pk: 1
+- fields: {category: 1, name: 'tea, suger, milk, eve milk, mayo', price: '8.68', purchase_date: 2010-03-04,
+    user: 2}
+  model: core.item
+  pk: 2
+- fields: {category: 1, name: carrots, price: '3.2', purchase_date: 2010-02-04, user: 2}
+  model: core.item
+  pk: 3
+- fields: {category: 1, name: pepper, price: '1.12', purchase_date: 2010-01-04, user: 2}
+  model: core.item
+  pk: 4
+- fields: {category: 1, name: banana, price: '1.2', purchase_date: 2009-01-04, user: 2}
+  model: core.item
+  pk: 5
+- fields: {category: 1, name: potato, price: '2.12', purchase_date: 2009-03-04, user: 2}
+  model: core.item
+  pk: 6
+- fields: {category: 2, name: 'washing liquid, hand wash, bin bag', price: '4.67',
+    purchase_date: 2010-03-09, user: 3}
+  model: core.item
+  pk: 7
+- fields: {category: 1, name: sweet, price: '5', purchase_date: 2010-03-09, user: 3}
+  model: core.item
+  pk: 8
+- fields: {category: 2, name: Heater, price: '37', purchase_date: 2010-03-10, user: 4}
+  model: core.item
+  pk: 9
+- fields: {category: 1, name: 'Beans, butter, salmon', price: '12.34', purchase_date: 2010-03-10,
+    user: 5}
+  model: core.item
+  pk: 10
+- fields: {city: London, country: UK, house_number: 116A, post_code: HA8
+      0BB, street_name: Burnt Oak Broaway}
+  model: core.address
+  pk: 1
+- fields: {city: London, country: UK, house_number: '11', post_code: HA8
+      7SX, street_name: Camrose Avenue}
+  model: core.address
+  pk: 2
+
+- fields:
+    date_joined: 2010-03-02 10:51:27
+    email: muhammad.rahman@aemedia.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2010-03-18 06:51:03.336728
+    last_name: ''
+    password: sha1$805b6$333aba179ea9051396499fb853d946a3c2230776
+    user_permissions: []
+    username: mrahma01
+  model: auth.user
+  pk: 1
+- fields:
+    date_joined: 2010-03-18 06:52:52.108094
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-18 06:52:52.108038
+    last_name: ''
+    password: sha1$7bae9$fe230d0902ec62a64bb05c5b01419762e2771978
+    user_permissions: []
+    username: rocky
+  model: auth.user
+  pk: 2
+- fields:
+    date_joined: 2010-03-18 06:58:21.180940
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-18 06:58:21.180927
+    last_name: ''
+    password: sha1$5855e$802865aef70864e6ad468e98976944c14995448c
+    user_permissions: []
+    username: anu
+  model: auth.user
+  pk: 3
+- fields:
+    date_joined: 2010-03-18 06:58:39.226686
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-18 06:58:39.226674
+    last_name: ''
+    password: sha1$f35c4$c67497e979bcb30d65e96d50886db2f7d1e170bf
+    user_permissions: []
+    username: roman
+  model: auth.user
+  pk: 4
+- fields:
+    date_joined: 2010-03-18 06:59:15.079869
+    email: ''
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-18 06:59:15.079857
+    last_name: ''
+    password: sha1$97e6b$afe0d94f67b84897932a15fec8598fdf763a7dad
+    user_permissions: []
+    username: steve
+  model: auth.user
+  pk: 5
+- fields:
+    date_joined: 2010-03-30 11:09:40.284453
+    email: sumon_6357@yahoo.com
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2010-03-30 11:09:58.073721
+    last_name: ''
+    password: sha1$7797a$315282210cacff87af75e837e2b9c5d2c828aed5
+    user_permissions: []
+    username: sumon
+  model: auth.user
+  pk: 6
+
+- fields: {address: 1, user: 2}
+  model: core.profile
+  pk: 1
+- fields: {address: 1, user: 3}
+  model: core.profile
+  pk: 2
+- fields: {address: 2, user: 4}
+  model: core.profile
+  pk: 3
+- fields: {address: 2, user: 5}
+  model: core.profile
+  pk: 4
+- fields: {address: null, user: 6}
+  model: core.profile
+  pk: 5
+
+- fields: {date_invited: !!timestamp '2010-03-30 11:09:19.015948', from_user: 2, key: 2ebfee0214462f3afc2048b2b8206232cef26c36,
+    registrant: 6}
+  model: invitation.invitationkey
+  pk: 1
+

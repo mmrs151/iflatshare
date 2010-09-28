@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>FINAL MONTHLY REPORT </h2>
+<br />
+<h3>Monthly Total - £{{ total }}</h3>
+<br />
+<h3>Average - £{{ avg }}</h3>
+
+<table border="1" width="500px">
+    <tr bgcolor="#000000">
+        <th>User</th>
+        <th>Monthly Spent</th>
+        <th>Difference</th>
+    </tr>
+{% for user, data in avg_diff.items %}
+    <tr bgcolor="#336666" align="center">
+        <td>{{ user|upper }}</td>
+        <td>£{{ data.total }}</td>
+        <td>£{{ data.diff }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endblock %}
