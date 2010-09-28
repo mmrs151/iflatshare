@@ -11,10 +11,10 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'cost_management.db'             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_NAME = 'cost_management'             # Or path to database file if using sqlite3.
+DATABASE_USER = 'root'             # Not used with sqlite3.
+DATABASE_PASSWORD = 'admin'         # Not used with sqlite3.
+DATABASE_HOST = '127.0.0.1'             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
@@ -36,7 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/Users/mrahma01/Dev/cost_management/media'
+MEDIA_ROOT = '/Users/shohag/Dev/cost_management/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -71,8 +71,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 ROOT_URLCONF = 'cost_management.urls'
 
 TEMPLATE_DIRS = (
-    "/Users/mrahma01/Dev/cost_management/templates",
-    "/Users/mrahma01/Dev/cost_management/mcm/templates"
+    "/Users/shohag/Dev/cost_management/templates",
+    "/Users/shohag/Dev/cost_management/mcm/templates"
 )
 
 INSTALLED_APPS = (

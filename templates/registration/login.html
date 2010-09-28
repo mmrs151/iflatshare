@@ -3,6 +3,7 @@
 <h2>Log In</h2>
 <br />
     <form method="post" action="">
+    {% csrf_token %}
         <table cellspacing="0">{{ form }}
         <tr><td colspan="2" align="right"><input type="submit" value="Log In" /></td></tr>
         </table>
