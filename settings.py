@@ -1,4 +1,4 @@
-# Django settings for cost_management project.
+# Django settings for iflatshare project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,7 +11,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'cost_management'             # Or path to database file if using sqlite3.
+DATABASE_NAME = 'iflatshare.db'             # Or path to database file if using sqlite3.
 DATABASE_USER = 'root'             # Not used with sqlite3.
 DATABASE_PASSWORD = 'admin'         # Not used with sqlite3.
 DATABASE_HOST = '127.0.0.1'             # Set to empty string for localhost. Not used with sqlite3.
@@ -36,7 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/Users/shohag/Dev/cost_management/media'
+MEDIA_ROOT = '/Users/shohag/Dev/iflatshare/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -68,11 +68,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
 )
 
-ROOT_URLCONF = 'cost_management.urls'
+ROOT_URLCONF = 'iflatshare.urls'
 
 TEMPLATE_DIRS = (
-    "/Users/shohag/Dev/cost_management/templates",
-    "/Users/shohag/Dev/cost_management/mcm/templates"
+    "/Users/shohag/Dev/iflatshare/templates",
+    "/Users/shohag/Dev/iflatshare/core/templates"
 )
 
 INSTALLED_APPS = (
@@ -82,7 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'cost_management.mcm',
+    'iflatshare.core',
     'registration',
     'invitation',
     'contact_form'
@@ -95,8 +95,8 @@ EMAIL_PORT = 25
 
 ACCOUNT_INVITATION_DAYS = 10
 INVITATIONS_PER_USER = 10
-AUTH_PROFILE_MODULE = 'mcm.Profile'
+AUTH_PROFILE_MODULE = 'core.Profile'
 
-LOGIN_REDIRECT_URL = '/mcm/item'
+LOGIN_REDIRECT_URL = '/core/item'
 
 INVITE_MODE = True
