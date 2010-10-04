@@ -19,12 +19,12 @@ def item(request):
             form = ItemForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/core/item/')
+                return HttpResponseRedirect('/item/')
         else:
             form = ItemForm(user)
-        return render_to_response('core/item.html', {'form': form,}, context_instance=RequestContext(request))
+        return render_to_response('item.html', {'form': form,}, context_instance=RequestContext(request))
     else:
-        return HttpResponseRedirect('/core/profile/address/edit/')
+        return HttpResponseRedirect('/profile/address/edit/')
 
 @login_required
 def monthly(request, year, month):
@@ -32,7 +32,7 @@ def monthly(request, year, month):
     address = user.profile.address
     item_list = address.monthly_transaction(year, month)
     monthly_total = address.monthly_total(year, month)
-    return render_to_response('core/monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
+    return render_to_response('monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
 
 @login_required
 def avg_diff(request, year, month):
@@ -42,7 +42,7 @@ def avg_diff(request, year, month):
     avg = address.monthly_avg(year, month)
     users = user.profile.get_housemates()
     avg_diff =dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
-    return render_to_response('core/avg_diff.html', {'avg_diff': avg_diff, 'avg': avg, 'total': total},context_instance=RequestContext(request))
+    return render_to_response('avg_diff.html', {'avg_diff': avg_diff, 'avg': avg, 'total': total},context_instance=RequestContext(request))
 
 @login_required
 def user_transaction(request, user_name, year, month):
@@ -52,14 +52,14 @@ def user_transaction(request, user_name, year, month):
         return HttpResponseForbidden("<h1>You are not authorised to view this page</h1>")
     item_list = user.profile.monthly_transaction(year, month)
     monthly_total = user.profile.monthly_total(year, month)
-    return render_to_response('core/user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name},context_instance=RequestContext(request))
+    return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name},context_instance=RequestContext(request))
 
 @login_required
 def monthly_category(request, year, month):
     user = request.user
     address = user.address
     summery = address.category_summery(year, month)
-    return render_to_response('core/monthly_category.html',{'summery':summery},context_instance=RequestContext(request))
+    return render_to_response('monthly_category.html',{'summery':summery},context_instance=RequestContext(request))
 
 
 @login_required
@@ -68,7 +68,7 @@ def category_transaction(request, category_name, year, month):
     address = user.profile.address
     category_transaction = address.category_transaction(category_name, year, month)
     summery = address.category_summary(year, month)
-    return render_to_response('core/category_transaction.html',{'year':year, 'month':month, 'summery':summery,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
+    return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summery':summery,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
 
 @login_required
 def edit_address(request):
@@ -84,8 +84,8 @@ def edit_address(request):
             if not profile.has_address():
                 profile.address = address
                 profile.save()
-                return HttpResponseRedirect('/core/item/')
+                return HttpResponseRedirect('/item/')
     else:
         form = AddressForm(instance=address)
-    return render_to_response('core/address.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('address.html', {'form': form}, context_instance=RequestContext(request))
 
