@@ -2,7 +2,7 @@ from django.db import models
 from invitation.models import InvitationKey
 from django.contrib.auth.models import User as AuthUser
 from django.db.models import Sum
-from decimal import Decimal
+from decimal import *
 from django.db.models.signals import post_save
 from iflatshare.core import signals as custom_signals
 
@@ -22,8 +22,9 @@ class Address(models.Model):
     
     def monthly_avg(self, year, month):
         try:
+            getcontext().prec = 2
             total_user = AuthUser.objects.filter(profile__address=self).count()
-            monthly_avg = Decimal(self.monthly_total(year, month)//total_user)
+            monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
         except TypeError:
             monthly_avg =0
         return monthly_avg
