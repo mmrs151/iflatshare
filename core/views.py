@@ -42,7 +42,7 @@ def avg_diff(request, year, month):
     avg = address.monthly_avg(year, month)
     users = user.profile.get_housemates()
     avg_diff =dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
-    return render_to_response('avg_diff.html', {'avg_diff': avg_diff, 'avg': avg, 'total': total},context_instance=RequestContext(request))
+    return render_to_response('avg_diff.html', {'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month},context_instance=RequestContext(request))
 
 @login_required
 def user_transaction(request, user_name, year, month):
