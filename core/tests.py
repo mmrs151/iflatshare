@@ -34,7 +34,7 @@ class AddressTestCase(TestCase):
         Test the monthly avg for this address
         """
         address = Address.objects.get(pk=1)
-        self.failUnlessEqual(Decimal('9'), address.monthly_avg(2010, 3))
+        self.failUnlessEqual(Decimal('9.8'), address.monthly_avg(2010, 3))
 
     def test_monthly_total(self):
         """
