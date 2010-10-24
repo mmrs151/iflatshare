@@ -51,6 +51,11 @@ class ProfileManager(models.Manager):
 class Profile(models.Model):
     user = models.OneToOneField(AuthUser)
     address = models.ForeignKey(Address, blank=True, null=True)
+    CHOICES = (
+        ('present', 'Present'),
+        ('left', 'Left'),
+    )
+    status = models.CharField(max_length=7, choices=CHOICES)
 
     objects = ProfileManager()
     
