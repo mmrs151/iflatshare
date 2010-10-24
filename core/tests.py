@@ -34,7 +34,7 @@ class AddressTestCase(TestCase):
         Test the monthly avg for this address
         """
         address = Address.objects.get(pk=1)
-        self.failUnlessEqual(Decimal('9.8'), address.monthly_avg(2010, 3))
+        self.failUnlessEqual(Decimal('6.5'), address.monthly_avg(2010, 3))
 
     def test_monthly_total(self):
         """
@@ -90,6 +90,11 @@ class UserTestCase(TestCase):
         self.assertTrue(anu.profile.is_housemate_of(rocky))
         self.assertTrue(rocky.profile.is_housemate_of(anu))
         self.assertFalse(rocky.profile.is_housemate_of(roman))
+
+    def test_left_housemates(self):
+        rocky = User.objects.get(username='rocky')
+        sumon = User.objects.get(username='sumon')
+        self.assertFalse(rocky.profile.is_housemate_of(sumon))
     
     def test_has_address(self):
         rocky = User.objects.get(username='rocky')

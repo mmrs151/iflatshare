@@ -63,7 +63,8 @@ class Profile(models.Model):
         return u'%s, %s' % (unicode(self.user), unicode(self.address))
     
     def get_housemates(self):
-        return AuthUser.objects.filter(profile__address=self.address)
+        if self.status == 'present':
+            return AuthUser.objects.filter(profile__address=self.address, profile__status='present')
 
     def monthly_total(self, year, month):
         queryset = self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
@@ -75,7 +76,7 @@ class Profile(models.Model):
         return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month)
 
     def is_housemate_of(self, other_user):
-        return self.address == other_user.profile.address
+        return self.address == other_user.profile.address and self.status == other_user.profile.status
 
     def has_address(self):
         return self.address is not None
