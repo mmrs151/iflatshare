@@ -1,10 +1,10 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext, Context, loader
-from forms import ItemForm, AddressForm
+from forms import ItemForm, AddressForm, CalendarForm
 from iflatshare.core.models import *
 from django.contrib.auth.models import User
-import datetime
+from datetime import date
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -35,14 +35,22 @@ def monthly(request, year, month):
     return render_to_response('monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
 
 @login_required
-def avg_diff(request, year, month):
+def avg_diff(request):
+    form = CalendarForm(request.POST or None)
+    if form.is_valid():
+        year = request.POST.get('year')
+        month = request.POST.get('month')
+        print year, month
+    else:
+        year = date.today().year 
+        month = date.today().month
     user = request.user
     address = user.profile.address
     total = address.monthly_total(year, month)
     avg = address.monthly_avg(year, month)
     users = user.profile.get_housemates()
     avg_diff =dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
-    return render_to_response('avg_diff.html', {'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month},context_instance=RequestContext(request))
+    return render_to_response('avg_diff.html', {'form': form, 'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month},context_instance=RequestContext(request))
 
 @login_required
 def user_transaction(request, user_name, year, month):

@@ -16,3 +16,6 @@ class AddressForm(ModelForm):
     class Meta:
         model = Address
 
+class CalendarForm(forms.Form):
+    year = forms.DecimalField(max_digits=4)
+    month = forms.DecimalField(max_digits=2, max_value=12)
