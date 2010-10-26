@@ -23,7 +23,7 @@ class Address(models.Model):
     def monthly_avg(self, year, month):
         try:
             getcontext().prec = 2
-            total_user = AuthUser.objects.filter(profile__address=self).count()
+            total_user = AuthUser.objects.filter(profile__address=self, profile__status='present').count()
             monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
         except TypeError:
             monthly_avg =0

@@ -21,7 +21,7 @@
     <th>Category Name</th><th>Total Spent</th>
 </tr>
     {% for item in summery %}
-    <tr bgcolor="#336666" align="center">
+    <tr bgcolor="#336699" align="center">
         <td align="left"><a href="/core/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td>£{{ item.item__price__sum }}</td>
     </tr>
     {% endfor %}
