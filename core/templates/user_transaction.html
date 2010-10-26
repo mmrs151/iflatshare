@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<h2><strong>Purchage history of {{ user_name }}</strong></h2>
-
+<h2><strong>Purchage history of {{ user_name|upper }}</strong></h2>
+<br />
+<br />
+<br />
+<table width='700px' width='700px'>
+<tr><td>
 <table border="1" cellpadding="5" width="500px">
     <tr bgcolor="#000000" align="center">
         <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>Category</td>
@@ -14,5 +18,18 @@
     <tr>
         <td align="center"><strong>TOTAL</strong></td><td colspan="4" align="center"><strong>£{{ monthly_total }}</strong></td>
     </tr>
+</table>
+</td>
+<td bgcolor="lightblue" valign="top">
+<table border="1" cellpadding="5" width="200px">
+ <tr bgcolor='#000000' align='center'>
+  <td align='center'>House Mates</td>
+ </tr>
+  {% for user in housemates %}
+  <tr bgcolor='#336699' align='center'><td align='center'><a href="/core/user/{{user}}/{{year}}/{{month}}">{{ user|upper }}</a></td></tr>
+  {% endfor %}
+</table>
+</td>
+</tr>
 </table>
 {% endblock %}

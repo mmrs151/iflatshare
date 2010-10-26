@@ -60,7 +60,8 @@ def user_transaction(request, user_name, year, month):
         return HttpResponseForbidden("<h1>You are not authorised to view this page</h1>")
     item_list = user.profile.monthly_transaction(year, month)
     monthly_total = user.profile.monthly_total(year, month)
-    return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name,'year':year, 'month':month},context_instance=RequestContext(request))
+    housemates = user.profile.get_housemates()
+    return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name,'year':year, 'month':month, 'housemates':housemates},context_instance=RequestContext(request))
 
 @login_required
 def monthly_category(request, year, month):

@@ -10,7 +10,7 @@
     </tr>
         {% for item in category_transaction %}
     <tr bgcolor="#336666" align="center">
-        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td>{{item.user}}</td>
+        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/core/user/{{item.user}}/{{year}}/{{month}}">{{item.user|upper}}</a></td>
     </tr>
 {% endfor %}
 </table>
