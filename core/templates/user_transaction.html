@@ -12,7 +12,7 @@
     </tr>
         {% for item in item_list %}
     <tr bgcolor="#336666" align="center">
-        <td align="left">{{item.name}}</td><td>£{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/core/category/{{item.category}}/{{year}}/{{month}}">{{ item.category }}</a></td>    
+        <td align="left">{{item.name}}</td><td>£{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/category/{{item.category}}/{{year}}/{{month}}">{{ item.category }}</a></td>    
     </tr>
 {% endfor %}
     <tr>
@@ -26,7 +26,7 @@
   <td align='center'>House Mates</td>
  </tr>
   {% for user in housemates %}
-  <tr bgcolor='#336699' align='center'><td align='center'><a href="/core/user/{{user}}/{{year}}/{{month}}">{{ user|upper }}</a></td></tr>
+  <tr bgcolor='#336699' align='center'><td align='center'><a href="/user/{{user}}/{{year}}/{{month}}">{{ user|upper }}</a></td></tr>
   {% endfor %}
 </table>
 </td>

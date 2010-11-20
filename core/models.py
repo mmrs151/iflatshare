@@ -1,5 +1,5 @@
 from django.db import models
-from invitation.models import InvitationKey
+#from invitation.models import InvitationKey
 from django.contrib.auth.models import User as AuthUser
 from django.db.models import Sum
 from decimal import *
@@ -81,18 +81,18 @@ class Profile(models.Model):
     def has_address(self):
         return self.address is not None
 
-    def was_invited(self):
-        try:
-            invited = InvitationKey.objects.get(registrant=self.user)
-            return True
-        except InvitationKey.DoesNotExist:
-            return False
+#    def was_invited(self):
+#        try:
+#            invited = InvitationKey.objects.get(registrant=self.user)
+#            return True
+#        except InvitationKey.DoesNotExist:
+#            return false
 
-    def from_user_address(self):
-        key = InvitationKey.objects.get(registrant=self.user)
-        return key.from_user.profile.address
+#    def from_user_address(self):
+#        key = InvitationKey.objects.get(registrant=self.user)
+#        return key.from_user.profile.address
     
-post_save.connect(custom_signals.assign_address, sender=Profile)
+#post_save.connect(custom_signals.assign_address, sender=Profile)
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

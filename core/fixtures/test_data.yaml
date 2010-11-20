@@ -144,11 +144,5 @@
   model: core.profile
   pk: 4
 - fields: {address: 1, status: left, user: 6}
-  model: core.profile
   pk: 5
-
-- fields: {date_invited: !!timestamp '2010-03-30 11:09:19.015948', from_user: 2, key: 2ebfee0214462f3afc2048b2b8206232cef26c36,
-    registrant: 6}
-  model: invitation.invitationkey
-  pk: 1
-
+  model: core.profile

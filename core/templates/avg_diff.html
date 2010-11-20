@@ -17,7 +17,7 @@
     </tr>
 {% for user, data in avg_diff.items %}
     <tr bgcolor="#336666" align="center">
-        <td><a href=/core/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
+        <td><a href=/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
         <td>£{{ data.total }}</td>
         <td>£{{ data.diff }}</td>
 {% endfor %}
@@ -28,7 +28,7 @@
   <table>
    <tr>
     <td>
-     <form name='calendar' method='post' action='/core/avg_diff/'>
+     <form name='calendar' method='post' action='/avg_diff/'>
      {{form}}
     </td>
    </tr>

@@ -3,35 +3,24 @@ from django.conf import settings
 from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
 from django.views.generic.simple import direct_to_template
 from core.models import Profile
-from contact_form.forms import AkismetContactForm
+#from contact_form.forms import AkismetContactForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    (r'^core/', include('iflatshare.core.urls')),
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/login/$', 'django.contrib.auth.views.login'),
     (r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'registration/logout.html'}),
-    url( r'^accounts/register/create/$','registration.views.register',{ 'profile_callback': Profile.objects.create }), 
-    url( r'^accounts/register/$','invitation.views.register',{ 'profile_callback': Profile.objects.create_from_user }),
-    (r'^accounts/', include('invitation.urls')),
-    (r'^accounts/', include('registration.urls')),
-    url(r'^contact/$', 'contact_form.views.contact_form', {'form_class': AkismetContactForm}, name='contact_form'),
-    (r'^contact/', include('contact_form.urls'))
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'media'}),
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT,
+                                                                        'show_indexes': True}),
     )
 
 urlpatterns += patterns('',
-  (r'^accounts/profile/$', direct_to_template, {'template': 'registration/profile.html'}),
-  (r'^accounts/password_reset/$', password_reset, {'template_name': 'registration/password_reset.html'}),
-  (r'^accounts/password_reset_done/$', password_reset_done, {'template_name': 'registration/password_reset_done.html'}),
-  (r'^accounts/password_change/$', password_change, {'template_name': 'registration/password_change.html'}),
-  (r'^accounts/password_change_done/$', password_change_done, {'template_name': 'registration/password_change_done.html'}),
-)
-
+    (r'', include('iflatshare.core.urls')),
+ )

@@ -15,7 +15,7 @@
 	<div id="insidetop">
         
         <h5><a href="#">Edit Profile</a></h5>
-        <h5><a href="/core/profile/address/edit/">Edit Address</a></h5>
+        <h5><a href="/profile/address/edit/">Edit Address</a></h5>
         <h5><a href="#">Invite Housemates</a></h5>
         <h5><a href="#">Edit Housemates</a></h5>
         
@@ -38,15 +38,15 @@
     	{% block header %}
              <div id="header">
              
-                    <h1><a href="/core/avg_diff"><em>i</em>FlatShare <sup><em>&#946;</em></sup></a></h1>
+                    <h1><a href="/avg_diff"><em>i</em>FlatShare <sup><em>&#946;</em></sup></a></h1>
                     {% block menu %}
                      <div id="menu">
                 
                         <ul>	
-                            <li><a href="/core/item">Item</a></li>
-                            <li><a href="/core/user/{{user.username}}/{% now "Y"%}/{% now "m"%}">User</a></li>
-                            <li><a href="/core/monthly/{% now "Y"%}/{% now "m"%}">Month</a></li>
-                            <li><a href="/core/avg_diff/">Final</a></li>
+                            <li><a href="/item">Item</a></li>
+                            <li><a href="/user/{{user.username}}/{% now "Y"%}/{% now "m"%}">User</a></li>
+                            <li><a href="/monthly/{% now "Y"%}/{% now "m"%}">Month</a></li>
+                            <li><a href="/avg_diff/">Final</a></li>
                             <li class="selected"><a href="/accounts/logout/">Logout</a></li>
                         </ul>
                     

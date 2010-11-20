@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    return render_to_response('base.html',{},context_instance=RequestContext(request))
-
+    #return render_to_response('base.html',{},context_instance=RequestContext(request))
+    return HttpResponseRedirect('/avg_diff')
 @login_required
 def item(request):
     user = request.user
@@ -19,7 +19,7 @@ def item(request):
             form = ItemForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/core/item/')
+                return HttpResponseRedirect('/item/')
         else:
             form = ItemForm(user)
         return render_to_response('item.html', {'form': form,}, context_instance=RequestContext(request))
@@ -97,4 +97,3 @@ def edit_address(request):
     else:
         form = AddressForm(instance=address)
     return render_to_response('address.html', {'form': form}, context_instance=RequestContext(request))
-

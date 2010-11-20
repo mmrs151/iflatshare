@@ -10,7 +10,7 @@
     </tr>
         {% for item in category_transaction %}
     <tr bgcolor="#336666" align="center">
-        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/core/user/{{item.user}}/{{year}}/{{month}}">{{item.user|upper}}</a></td>
+        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/user/{{item.user}}/{{year}}/{{month}}">{{item.user|upper}}</a></td>
     </tr>
 {% endfor %}
 </table>
@@ -22,7 +22,7 @@
 </tr>
     {% for item in summery %}
     <tr bgcolor="#336699" align="center">
-        <td align="left"><a href="/core/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td>£{{ item.item__price__sum }}</td>
+        <td align="left"><a href="/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td>£{{ item.item__price__sum }}</td>
     </tr>
     {% endfor %}
 </table>
