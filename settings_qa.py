@@ -13,7 +13,7 @@ MANAGERS = ADMINS
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 DATABASE_NAME = 'sewinzco_iflatshare'             # Or path to database file if using sqlite3.
 DATABASE_USER = 'sewinzco'             # Not used with sqlite3.
-DATABASE_PASSWORD = 'Sh)h@g!5!'         # Not used with sqlite3.
+DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
 DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
 
