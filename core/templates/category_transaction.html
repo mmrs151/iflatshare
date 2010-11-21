@@ -1,18 +1,34 @@
 {% extends "base.html" %}
+{% block head %}
+<script>
+    $(document).ready(function() 
+        { 
+            $("#sort_table").tablesorter(); 
+        } 
+    ); 
+</script>
+{% endblock %}
 {% block content %}
 
 <h2> Monthly Category Transaction Report for {{ category }} </h2>
 <br />
 <table width="700px"><tr><td>
-<table border="1" cellpadding="5" width="500px">
+<table border="1" cellpadding="5" width="500px" id="sort_table">
+    <thead>
     <tr bgcolor="#000000" align="center">
-        <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>User Name</td>
+        <th><a href="#">Item Name</a></th>
+        <th><a href="#">Item Price</a></th>
+        <th><a href="#">Purchase Date</a></th>
+        <th><a href="#">User Name</a></th>
     </tr>
+    </thead>
+    <tbody>
         {% for item in category_transaction %}
     <tr bgcolor="#336666" align="center">
         <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/user/{{item.user}}/{{year}}/{{month}}">{{item.user|upper}}</a></td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 </td>
 <td bgcolor="lightblue" valign="top">

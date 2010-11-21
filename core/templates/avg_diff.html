@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block head %}
+<script>
+    $(document).ready(function() 
+        { 
+            $("#sort_table").tablesorter(); 
+        } 
+    ); 
+</script>
+{% endblock %}
 {% block content %}
 <h2>FINAL MONTHLY REPORT </h2>
 <br />
@@ -9,12 +18,15 @@
 <table border='2'>
  <tr>
  <td>
-  <table border="1" width="500px">
+  <table border="1" width="500px" id="sort_table" class="tablesorter">
+  <thead> 
     <tr bgcolor="#000000">
-        <th>User</th>
-        <th>Monthly Spent</th>
-        <th>Difference</th>
+        <th><a href="#">User</a></th>
+        <th><a href="#">Monthly Spent</a></th>
+        <th><a href="#">Difference</a></th>
     </tr>
+  </thead>
+  <tbody>  
 {% for user, data in avg_diff.items %}
     <tr bgcolor="#336666" align="center">
         <td><a href=/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
@@ -41,5 +53,6 @@
   </table>
  </td>
 </tr>
+</tbody>
 </table>
 {% endblock %}

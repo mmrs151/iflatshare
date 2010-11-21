@@ -1,4 +1,14 @@
 {% extends "base.html" %}
+{% block head %}
+<script>
+    $(document).ready(function() 
+        { 
+            $("#sort_table").tablesorter(); 
+        } 
+    ); 
+</script>
+{% endblock %}
+
 {% block content %}
 <h2><strong>Purchage history of {{ user_name|upper }}</strong></h2>
 <br />
@@ -6,19 +16,26 @@
 <br />
 <table width='700px' width='700px'>
 <tr><td>
-<table border="1" cellpadding="5" width="500px">
+<table border="1" cellpadding="5" width="500px" id="sort_table">
+    <thead>
     <tr bgcolor="#000000" align="center">
-        <td>Item Name</td><td>Item Price</td><td>Purchase Date</td><td>Category</td>
+        <th><a href="#">Item Name</a></th>
+        <th><a href="#">Item Price</a></th>
+        <th><a href="#">Purchase Date</a></th>
+        <th><a href="#">Category</a></th>
     </tr>
+    </thead>
+    <tbody>
         {% for item in item_list %}
     <tr bgcolor="#336666" align="center">
         <td align="left">{{item.name}}</td><td>£{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/category/{{item.category}}/{{year}}/{{month}}">{{ item.category }}</a></td>    
     </tr>
 {% endfor %}
     <tr>
+    </tbody>
         <td align="center"><strong>TOTAL</strong></td><td colspan="4" align="center"><strong>£{{ monthly_total }}</strong></td>
     </tr>
-</table>
+    </table>
 </td>
 <td bgcolor="lightblue" valign="top">
 <table border="1" cellpadding="5" width="200px">
