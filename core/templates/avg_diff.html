@@ -29,7 +29,7 @@
   <tbody>  
 {% for user, data in avg_diff.items %}
     <tr bgcolor="#336666" align="center">
-        <td><a href=/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
+        <td align="left"><a href=/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
         <td>£{{ data.total }}</td>
         <td>£{{ data.diff }}</td>
 {% endfor %}
