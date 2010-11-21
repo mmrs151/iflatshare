@@ -18,7 +18,6 @@ table {
 }
 caption, th, td {
 	font-weight:normal;
-	text-align:center;
     vertical-align:top;
 }
 blockquote:before, blockquote:after, q:before, q:after {

@@ -11,3 +11,4 @@ os.environ['DJANGO_SETTINGS_MODULE'] = "iflatshare.settings"
 
 from django.core.servers.fastcgi import runfastcgi
 runfastcgi(method="threaded", daemonize="false")
+
