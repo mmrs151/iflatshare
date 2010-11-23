@@ -62,6 +62,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -79,6 +80,18 @@ TEMPLATE_DIRS = (
     "/home2/sewinzco/www/iflatshare/core/templates"
 )
 
+# EMAIL HOST SETTINGS
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'hjbrl19@gmail.com'
+EMAIL_HOST_PASSWORD = 'hjbrl1981'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# EMAIL MESSGAE SETTINGS
+HONEYPOT_FIELD_NAME = 'contact'
+DEFAULT_FROM_EMAIL = 'hjbrl19@gmail.com'
+DEFAULT_TO_EMAIL = 'mmrs151@gmail.com'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.humanize',
@@ -86,16 +99,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'iflatshare.core'
-#    'registration',
-#    'invitation',
-#    'contact_form'
+    'iflatshare.core',
+    'envelope',
+    'honeypot',
 )
-
-ACCOUNT_ACTIVATION_DAYS = 2
-EMAIL_HOST = 'localhost'
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
-EMAIL_PORT = 25
 
 ACCOUNT_INVITATION_DAYS = 10
 INVITATIONS_PER_USER = 10

@@ -97,3 +97,6 @@ def edit_address(request):
     else:
         form = AddressForm(instance=address)
     return render_to_response('address.html', {'form': form}, context_instance=RequestContext(request))
+
+def thanks(request):
+    return render_to_response('envelope/thanks.html', RequestContext(request))

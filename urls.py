@@ -1,9 +1,6 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
-from django.contrib.auth.views import password_reset, password_reset_done, password_change, password_change_done
-from django.views.generic.simple import direct_to_template
-from core.models import Profile
-#from contact_form.forms import AkismetContactForm
+from core.forms import IFLContactForm
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -24,3 +21,10 @@ if settings.DEBUG:
 urlpatterns += patterns('',
     (r'', include('iflatshare.core.urls')),
  )
+ 
+contact_info = {'form_class':IFLContactForm, 
+                'template_name':'envelope/contact.html', 'redirect_to':'/thanks/',}
+
+urlpatterns += patterns('',
+    url(r'^contact/', 'envelope.views.contact', kwargs=contact_info, name='envelope-contact'),
+)                

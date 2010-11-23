@@ -9,4 +9,5 @@ urlpatterns = patterns('core.views',
     (r'^category/(?P<year>\d{4})/(?P<month>\d{1,2})$', 'monthly_category'),
     (r'^category/(?P<category_name>\w+)/(?P<year>\d{4})/(?P<month>\d{1,2})$', 'category_transaction'),
     (r'^profile/address/edit/$', 'edit_address'),
+    (r'^thanks/$', 'thanks'),
 )

@@ -1,0 +1,7 @@
+Message from iFlatShare
+
+Sender: {{ sender }} ({{ email }})
+
+Subject: {{ subject }}
+
+{{ message }}.

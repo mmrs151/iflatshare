@@ -1,0 +1,33 @@
+{% extends "registration/base_registration.html" %}
+{% load honeypot %}
+
+{% block title %} Contact Us {% endblock%}
+
+
+{% block section %}contact{% endblock %}
+
+{% block content %}
+	<div id="content-left">
+        <h2>Contact iFlatshare</h3>
+        <p>&nbsp;</p>
+            <section id="contact">
+              <form action="{% url envelope-contact %}" method="post">
+              {% csrf_token %}
+              {% render_honeypot_field %}
+
+                <fieldset style="border:0px;">
+                  <table id="new" cellpadding="0" cellspacing="0" border="0" align="center">
+                    <tbody>
+                    {{ form }}
+                    </tbody>
+                  </table>
+                </fieldset>
+                    <div id="button-area">
+                        <input class="button" type="button" value="Cancel"
+                                            onclick="window.location.href='/'"/>
+                        <input class="button" type="submit" value="Send Message" />
+                    </div>
+              </form>
+            </section>
+        </div>
+{% endblock %}
