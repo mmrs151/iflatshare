@@ -8,7 +8,7 @@
     is_superuser: true
     last_login: 2010-03-12 03:34:00.358367
     last_name: ''
-    password: sha1$805b6$333aba179ea9051396499fb853d946a3c2230776
+    password: sha1$da654$5ab390e4eab42c48f41532a7e634029cb6238266 
     user_permissions: []
     username: mrahma01
   model: auth.user

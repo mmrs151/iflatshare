@@ -79,7 +79,10 @@ class Profile(models.Model):
         return self.address == other_user.profile.address and self.status == other_user.profile.status
 
     def has_address(self):
-        return self.address is not None
+        try:
+            return self.address is not None
+        except DoesNotExist:
+            print user, 'imhere'
 
 #    def was_invited(self):
 #        try:
@@ -92,7 +95,7 @@ class Profile(models.Model):
 #        key = InvitationKey.objects.get(registrant=self.user)
 #        return key.from_user.profile.address
     
-#post_save.connect(custom_signals.assign_address, sender=Profile)
+post_save.connect(custom_signals.create_profile, sender=Profile)
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

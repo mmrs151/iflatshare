@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from core.forms import IFLContactForm
+from core.models import Profile
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -27,4 +28,8 @@ contact_info = {'form_class':IFLContactForm,
 
 urlpatterns += patterns('',
     url(r'^contact/', 'envelope.views.contact', kwargs=contact_info, name='envelope-contact'),
-)                
+)
+
+urlpatterns += patterns('',
+    (r'^accounts/', include('registration.urls')),
+    url(r'^accounts/register/create/$','registration.views.register',{'profile_callback': Profile.objects.create}),)

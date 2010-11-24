@@ -9,8 +9,8 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    #return render_to_response('base.html',{},context_instance=RequestContext(request))
     return HttpResponseRedirect('/avg_diff')
+
 @login_required
 def item(request):
     user = request.user
@@ -36,6 +36,9 @@ def monthly(request, year, month):
 
 @login_required
 def avg_diff(request):
+    user = request.user
+    if not user.profile.has_address():
+        return HttpResponseRedirect('/profile/address/edit/')
     form = CalendarForm(request.POST or None)
     if form.is_valid():
         year = request.POST.get('year')
@@ -92,6 +95,7 @@ def edit_address(request):
             address = form.save()
             if not profile.has_address():
                 profile.address = address
+                profile.status = 'present'
                 profile.save()
                 return HttpResponseRedirect('/item/')
     else:
