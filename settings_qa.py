@@ -80,17 +80,16 @@ TEMPLATE_DIRS = (
     "/home2/sewinzco/www/iflatshare/core/templates"
 )
 
-# EMAIL HOST SETTINGS
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'hjbrl19@gmail.com'
-EMAIL_HOST_PASSWORD = 'hjbrl1981'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-# EMAIL MESSGAE SETTINGS
 HONEYPOT_FIELD_NAME = 'contact'
-DEFAULT_FROM_EMAIL = 'hjbrl19@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = 'localhost'
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'
 DEFAULT_TO_EMAIL = 'mmrs151@gmail.com'
+EMAIL_PORT = 25
+
+CCOUNT_ACTIVATION_DAYS = 2
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -102,6 +101,7 @@ INSTALLED_APPS = (
     'iflatshare.core',
     'envelope',
     'honeypot',
+    'registration',
 )
 
 ACCOUNT_INVITATION_DAYS = 10
@@ -111,4 +111,3 @@ AUTH_PROFILE_MODULE = 'core.Profile'
 LOGIN_REDIRECT_URL = '/avg_diff/'
 
 INVITE_MODE = True
-

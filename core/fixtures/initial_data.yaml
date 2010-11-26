@@ -25,3 +25,6 @@
 - fields: {name: Misc}
   model: core.category
   pk: 4
+- fields: {domain: iflatshare.co.uk, name: iflatshare}
+  model: sites.site
+  pk: 1  
