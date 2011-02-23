@@ -7,7 +7,7 @@ sys.path.append('/home2/sewinzco/.local/lib/python2.6/site-packages/flup-1.0.2-p
 sys.path.append('/home2/sewinzco/.local/lib/python2.6/site-packages/django')
 sys.path.append('/home2/sewinzco/www')
 # Switch to the directory of your project. (Optional.)
-os.environ['DJANGO_SETTINGS_MODULE'] = "iflatshare.qa.settings"
+os.environ['DJANGO_SETTINGS_MODULE'] = "iflatshare.qa.iflatshare.settings"
 
 from django.core.servers.fastcgi import runfastcgi
 runfastcgi(method="threaded", daemonize="false")
