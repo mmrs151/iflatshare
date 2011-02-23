@@ -6,7 +6,7 @@ env.hosts = ['sewinzco@sewinz.com']
 
 def qa():
     """Use QA environment settings on remote host"""
-    env.path = '/home2/sewinzco/www/iflatshare_qa/'
+    env.path = '/home2/sewinzco/www/iflatshare/qa/'
     env.environment = 'qa'
 
 def production():
