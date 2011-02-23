@@ -36,7 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home2/sewinzco/www/iflatshare_qa/media/'
+MEDIA_ROOT = '/home2/sewinzco/www/iflatshare/qa/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -76,8 +76,8 @@ ROOT_URLCONF = 'iflatshare.urls'
 #} 
 
 TEMPLATE_DIRS = (
-    "/home2/sewinzco/www/iflatshare_qa/templates",
-    "/home2/sewinzco/www/iflatshare_qa/core/templates"
+    "/home2/sewinzco/www/iflatshare/qa/templates",
+    "/home2/sewinzco/www/iflatshare/qa/core/templates"
 )
 
 ENV = 'QA'
@@ -104,7 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'iflatshare_qa.core',
+    'iflatshare.core',
     'envelope',
     'honeypot',
     'registration',
