@@ -11,7 +11,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'mysql'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'sewinzco_iflatshare_qa'             # Or path to database file if using sqlite3.
+DATABASE_NAME = 'sewinzco_iflatshare20110216'             # Or path to database file if using sqlite3.
 DATABASE_USER = 'sewinzco'             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = 'localhost'             # Set to empty string for localhost. Not used with sqlite3.
@@ -36,7 +36,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home2/sewinzco/www/iflatshare_qa/media/'
+MEDIA_ROOT = '/home2/sewinzco/www/iflatshare/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -76,11 +76,11 @@ ROOT_URLCONF = 'iflatshare.urls'
 #} 
 
 TEMPLATE_DIRS = (
-    "/home2/sewinzco/www/iflatshare_qa/templates",
-    "/home2/sewinzco/www/iflatshare_qa/core/templates"
+    "/home2/sewinzco/www/iflatshare/templates",
+    "/home2/sewinzco/www/iflatshare/core/templates"
 )
 
-ENV = 'QA'
+ENV = 'PRODUCTION'
 VERSION = 'X.X.X'
 COMMIT = {'hash': '9d700b2',
           'url': '''https://github.com/mrahma01/iflatshare'''\
@@ -104,7 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.admin',
-    'iflatshare_qa.core',
+    'iflatshare.core',
     'envelope',
     'honeypot',
     'registration',

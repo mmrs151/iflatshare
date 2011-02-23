@@ -3,7 +3,16 @@ from fabric.api import *
 from fabric.contrib.console import confirm
 
 env.hosts = ['sewinzco@sewinz.com']
-env.path = '/home2/sewinzco/public_html/seofeeds/'
+
+def qa():
+    """Use QA environment settings on remote host"""
+    env.path = '/home2/sewinzco/www/iflatshare_qa/'
+    env.environment = 'qa'
+
+def production():
+    """Use Production environment settings on remote host"""
+    env.path = '/home2/sewinzco/www/iflatshare/'
+    env.environment = 'production'
 
 def test():
     with settings(warn_only=True):
@@ -29,10 +38,16 @@ def reload():
     with cd(env.path):
         run('touch iflatshare.fcgi')
 
+def syncdb():
+    """Run ./manage.py syncdb"""
+    with cd(env.path):
+        run('./manage.py syncdb"')
+
 def deploy(tag_version):
     prepare_deploy()
     upload(tag_version)
     with cd(env.path):
         run('tar -xzf /tmp/%s.gz' % tag_version)
         run('cp settings_qa.py settings.py')
+        run('cp iflatshare_qa.fcgi iflatshare.fcgi')
         reload()
