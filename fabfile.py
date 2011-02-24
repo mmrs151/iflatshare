@@ -43,11 +43,16 @@ def syncdb():
     with cd(env.path):
         run('./manage.py syncdb"')
 
+def prepare_server():
+    run('cp settings_qa.py settings.py')
+    run('cp iflatshare_qa.fcgi iflatshare.fcgi')
+    run('rm media/admin')
+    run('ln -s /home2/sewinzco/.local/lib/python2.6/site-packages/django/contrib/admin/media/ media/admin')
+
 def deploy(tag_version):
     prepare_deploy()
     upload(tag_version)
     with cd(env.path):
         run('tar -xzf /tmp/%s.gz' % tag_version)
-        run('cp settings_qa.py settings.py')
-        run('cp iflatshare_qa.fcgi iflatshare.fcgi')
+        prepare_server()
         reload()
