@@ -11,8 +11,8 @@
 {% block content %}
 <h2>FINAL MONTHLY REPORT </h2>
 <br />
-<h3>Monthly Total - £{{ total }} 
-<br />Average - £{{ avg }}</h3>
+<h3>Monthly Total - {{ total }} 
+<br />Average - {{ avg }}</h3>
 <br />
 <h3>{{year}}/{{month}}</h3>
 <table border='2'>
@@ -30,8 +30,8 @@
 {% for user, data in avg_diff.items %}
     <tr bgcolor="#336666" align="center">
         <td align="left"><a href=/user/{{user}}/{{year}}/{{month}}>{{ user|upper }}</a></td>
-        <td>£{{ data.total }}</td>
-        <td>£{{ data.diff }}</td>
+        <td>{{ data.total }}</td>
+        <td>{{ data.diff }}</td>
 {% endfor %}
     </tr>
   </table>
