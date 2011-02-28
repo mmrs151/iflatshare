@@ -1,3 +1,4 @@
+{% load versioning %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -67,8 +68,10 @@
     </div><!--wrapper-->
  
 {% block footer %} 
-<p>&nbsp</p>
-footer baby!
+<div id="footer">
+ {{ env|environment_name}} | v{{ version|version_number}}
+ (<a href="{{ 'url'|commit_name }}" target="_BLANK">{{ 'hash'|commit_name }}</a>)
+ </div>
 {% endblock %}    
 <script type='text/javascript'>
 $(document).ready(function(){
