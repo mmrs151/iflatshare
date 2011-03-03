@@ -66,7 +66,7 @@ class AddressTestCase(TestCase):
         self.failUnlessEqual(str(address.category_transaction('Grocery',2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: sweet>]')
 
  
-class UserTestCase(TestCase):
+class ProfileTestCase(TestCase):
     fixtures = ['test_data']
     
     def test_monthly_usr(self):
@@ -109,3 +109,15 @@ class UserTestCase(TestCase):
 #    def test_from_user_address(self):
 #        sumon = User.objects.get(username='sumon')
 #        self.failUnlessEqual(str(sumon.profile.from_user_address()), '116A')
+
+    def test_get_user(self):
+        rocky = User.objects.get(username='rocky')
+        self.assertTrue(rocky in rocky.profile.get_user(), \
+                    "user not found")
+
+    def test_get_housemates(self):
+        rocky = User.objects.get(username='rocky')
+        anu = User.objects.get(username='anu')
+        self.assertTrue(anu in rocky.profile.get_housemates(), \
+                    "housemates not found")
+    

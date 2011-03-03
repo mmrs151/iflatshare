@@ -6,8 +6,9 @@ from envelope.forms import *
 class ItemForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
         super(ModelForm, self).__init__(*args, **kwargs)
-        self.fields['user'].queryset = user.profile.get_housemates()
-
+        self.fields['user'].queryset = user.profile.get_user()
+        self.fields['user'].empty_label = None
+        self.fields['user'].initial = user
     name = forms.CharField(widget=forms.Textarea)
 
     class Meta:

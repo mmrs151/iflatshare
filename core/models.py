@@ -61,7 +61,11 @@ class Profile(models.Model):
     
     def __unicode__(self):
         return u'%s, %s' % (unicode(self.user), unicode(self.address))
-    
+
+    def get_user(self):
+        if self.status == 'present':
+            return AuthUser.objects.filter(username=self.user)
+
     def get_housemates(self):
         if self.status == 'present':
             return AuthUser.objects.filter(profile__address=self.address, profile__status='present')
