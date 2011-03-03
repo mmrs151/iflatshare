@@ -121,6 +121,9 @@ class Item(models.Model):
     price = models.DecimalField(max_digits=7, decimal_places=2)
     purchase_date = models.DateField(auto_now=True)
 
+    class Meta:
+        ordering = ['-purchase_date']
+
     objects = ItemManager()
 
     def __unicode__(self):
