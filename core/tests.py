@@ -24,7 +24,7 @@ class ItemManagerTest(TestCase):
         Test the montyly transaction list
         """
 
-        self.assertEquals(str(Item.objects.monthly_transaction(2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: washing liquid, hand wash, bin bag>, <Item: sweet>, <Item: Heater>, <Item: Beans, butter, salmon>]')
+        self.assertEquals(str(Item.objects.monthly_transaction(2010,3)),'[<Item: Heater>, <Item: Beans, butter, salmon>, <Item: washing liquid, hand wash, bin bag>, <Item: sweet>, <Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
 
 class AddressTestCase(TestCase):
     fixtures = ['test_data']
@@ -48,7 +48,7 @@ class AddressTestCase(TestCase):
         Test Monthly transaction for specific address
         """
         address = Address.objects.get(pk=1)
-        self.failUnlessEqual(str(address.monthly_transaction(2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: washing liquid, hand wash, bin bag>, <Item: sweet>]')
+        self.failUnlessEqual(str(address.monthly_transaction(2010,3)),'[<Item: washing liquid, hand wash, bin bag>, <Item: sweet>, <Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
 
     def test_category_summary(self):
         """
@@ -63,7 +63,7 @@ class AddressTestCase(TestCase):
         Test monthly transaction by category
         """
         address = Address.objects.get(pk=1)
-        self.failUnlessEqual(str(address.category_transaction('Grocery',2010,3)),'[<Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>, <Item: sweet>]')
+        self.failUnlessEqual(str(address.category_transaction('Grocery',2010,3)),'[<Item: sweet>, <Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
 
  
 class ProfileTestCase(TestCase):
