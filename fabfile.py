@@ -44,8 +44,8 @@ def syncdb():
         run('./manage.py syncdb"')
 
 def prepare_server():
-    run('cp settings_qa.py settings.py')
-    run('cp iflatshare_qa.fcgi iflatshare.fcgi')
+    run('cp settings_%(environment)s.py settings.py' % env)
+    run('cp iflatshare_%(environment)s.fcgi iflatshare.fcgi' % env)
     run('rm media/admin')
     run('ln -s /home2/sewinzco/.local/lib/python2.6/site-packages/django/contrib/admin/media/ media/admin')
 
