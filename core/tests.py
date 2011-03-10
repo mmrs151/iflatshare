@@ -26,6 +26,13 @@ class ItemManagerTest(TestCase):
 
         self.assertEquals(str(Item.objects.monthly_transaction(2010,3)),'[<Item: Heater>, <Item: Beans, butter, salmon>, <Item: washing liquid, hand wash, bin bag>, <Item: sweet>, <Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
 
+class ItemTest(TestCase):
+    fixtures = ['test_data']
+
+    def test_user_address(self):
+        newitem = Item.objects.get(pk=1)
+        self.assertEquals('116A,HA8 0BB', newitem.user_address(), "Address did not match")
+
 class AddressTestCase(TestCase):
     fixtures = ['test_data']
 

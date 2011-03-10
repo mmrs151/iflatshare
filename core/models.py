@@ -128,3 +128,8 @@ class Item(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def user_address(self):
+        address = self.user.profile.address.house_number + "," \
+                + self.user.profile.address.post_code
+        return address
