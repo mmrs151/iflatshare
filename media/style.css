@@ -178,9 +178,10 @@ h2{
 #footer {
 	background:url(images/footerline.jpg) left top repeat-x #0e1424;
 	clear:both;
-    margin:20px 0 0px 0;
+    margin:100px 0 0px 0;
     text-align:right;
     color:#cccccc;
+    height:15px;
 }
 
 #footer .content {
