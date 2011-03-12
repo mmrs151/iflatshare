@@ -80,7 +80,7 @@ TEMPLATE_DIRS = (
     "/home2/sewinzco/www/iflatshare/core/templates"
 )
 
-ENV = 'PRODUCTION'
+ENV = 'iFlatshare'
 VERSION = '1.2.0'
 COMMIT = {'hash': '0c54e17',
           'url': '''https://github.com/mrahma01/iflatshare'''\
