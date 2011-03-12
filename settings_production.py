@@ -81,10 +81,10 @@ TEMPLATE_DIRS = (
 )
 
 ENV = 'iFlatshare'
-VERSION = '1.2.0'
-COMMIT = {'hash': '0c54e17',
+VERSION = '1.3.0'
+COMMIT = {'hash': 'e834dea',
           'url': '''https://github.com/mrahma01/iflatshare'''\
-                 '''/commit/0c54e172cf5a81e76c468297ebcbba0f52591b18'''}
+                 '''/commit/e834dea10dc75fd8821e342d7aee8a1d2bc0223d'''}
 
 HONEYPOT_FIELD_NAME = 'contact'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'envelope',
     'honeypot',
     'registration',
+    'south',
 )
 
 ACCOUNT_INVITATION_DAYS = 10
