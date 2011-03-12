@@ -108,6 +108,7 @@ INSTALLED_APPS = (
     'envelope',
     'honeypot',
     'registration',
+    'south',
 )
 
 ACCOUNT_INVITATION_DAYS = 10
