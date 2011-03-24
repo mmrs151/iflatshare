@@ -176,11 +176,14 @@ h2{
 }
 
 #footer {
-    position:absolute;
-    bottom: 0;
-    right: 0;
-    color: #333333;
+    background:url(images/footerline.jpg) left top repeat-x #0e1424;
+    clear:both;
+    margin:100px 0 0px 0;
+    text-align:right;
+    color:#333333;
+    height:15px;
 }
+
 
 #footer .content {
 	background:url(images/footer.jpg) center top no-repeat #0e1424;
@@ -188,7 +191,7 @@ h2{
 }
 
 #footer a {
-    color: #000000;
+    color: #333333;
 }
 h3 {
 	font-size:16px;
