@@ -6,6 +6,7 @@ from iflatshare.core.models import *
 from django.contrib.auth.models import User
 from datetime import date
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 
 @login_required
 def index(request):
@@ -82,6 +83,7 @@ def category_transaction(request, category_name, year, month):
     summery = address.category_summary(year, month)
     return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summery':summery,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
 
+@csrf_protect
 @login_required
 def edit_address(request):
     profile = request.user.profile
@@ -96,6 +98,7 @@ def edit_address(request):
             if not profile.has_address():
                 profile.address = address
                 profile.status = 'present'
+                profile.is_admin = True
                 profile.save()
                 return HttpResponseRedirect('/item/')
     else:

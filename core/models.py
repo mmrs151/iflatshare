@@ -56,6 +56,7 @@ class Profile(models.Model):
         ('left', 'Left'),
     )
     status = models.CharField(max_length=7, choices=CHOICES)
+    is_admin = models.BooleanField(default=False)
 
     objects = ProfileManager()
     

@@ -20,6 +20,7 @@
  
 {% block content %}
 <form action="" method="post">
+{% csrf_token %}
     <table border="1">
         {{ form }}
         <tr>
@@ -27,4 +28,8 @@
         </tr>
     </table>
 </form>
+{% if '__all__' in form.errors %}
+    Please contact {{ admin }} to be registered in this flat.
+{% endif %}
+    
 {% endblock %}

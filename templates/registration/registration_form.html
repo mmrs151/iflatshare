@@ -3,6 +3,7 @@
 
 {% block content %}
 <form method="post" action="./?invitation_key={{ invitation_key }}">
+{% csrf_token %}
 <table>
   {{ form }}
   <tr>
