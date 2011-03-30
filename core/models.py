@@ -71,6 +71,10 @@ class Profile(models.Model):
         if self.status == 'present':
             return AuthUser.objects.filter(profile__address=self.address, profile__status='present')
 
+    def get_admin(self):
+        if self.status == 'present':
+            return AuthUser.objects.filter(profile__address=self.address, profile__is_admin=True)[0]
+
     def monthly_total(self, year, month):
         queryset = self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month).aggregate(Sum('price'))['price__sum']
         if queryset is None:
@@ -100,7 +104,7 @@ class Profile(models.Model):
 #        key = InvitationKey.objects.get(registrant=self.user)
 #        return key.from_user.profile.address
     
-post_save.connect(custom_signals.create_profile, sender=Profile)
+#post_save.connect(custom_signals.create_profile, sender=Profile)
 
 class Category(models.Model):
     name = models.CharField(max_length=200)

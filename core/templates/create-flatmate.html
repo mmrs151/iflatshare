@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block top %}
+
+
+{% endblock %}
+
+{% block menu %}
+<div id="menu">
+                
+<ul>	
+    <li><a href="/item/">Item</a></li>
+    <li><a href="#">User</a></li>
+    <li><a href="#">Month</a></li>
+    <li><a href="#">Final</a></li>
+    <li class="selected"><a href="/accounts/logout/">Logout</a></li>
+</ul>
+                    
+</div><!-- menu -->
+{% endblock %}
+
+{% block content %}
+<form action="" method="post">
+{% csrf_token %}
+    <table border="1">
+    {% if admin == user %}
+        {{ form }}
+        <tr>
+            <td colspan="2" style="text-align:right"><input type="submit" value="Save" /></td>
+        </tr>
+    {% else %}
+        <h3>Sorry, but you are not the admin of this flat.<br />
+        Please Contact {{ admin|upper }} to add new flatmate</h3>
+    {% endif %}        
+    </table>
+</form>    
+{% endblock %}

@@ -128,3 +128,7 @@ class ProfileTestCase(TestCase):
         self.assertTrue(anu in rocky.profile.get_housemates(), \
                     "housemates not found")
     
+    def test_get_admin(self):
+        anu = User.objects.get(username='anu')
+        rocky = User.objects.get(username='rocky')
+        self.assertEqual(rocky, anu.profile.get_admin())

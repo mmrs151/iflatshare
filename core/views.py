@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext, Context, loader
-from forms import ItemForm, AddressForm, CalendarForm
+from forms import ItemForm, AddressForm, CalendarForm, FlatmateCreateForm
 from iflatshare.core.models import *
 from django.contrib.auth.models import User
 from datetime import date
@@ -107,3 +107,24 @@ def edit_address(request):
 
 def thanks(request):
     return render_to_response('envelope/thanks.html', RequestContext(request))
+
+def create_flatmate(request):
+    user = request.user
+    admin = user.profile.get_admin()
+    if request.method == 'POST':
+        form = FlatmateCreateForm(request.POST)
+        if form.is_valid():            
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            newuser = User.objects.create_user(name, email, password)
+            Profile.objects.create_from_user(newuser)
+            newuser_profile = Profile.objects.get(user=newuser)
+            admin_address = user.profile.address
+            newuser_profile.address = admin_address
+            newuser_profile.status = 'present'
+            newuser_profile.save()
+            return HttpResponseRedirect('/avg_diff/')
+    else:
+        form = FlatmateCreateForm()
+    return render_to_response('create-flatmate.html', {'form':form, 'admin':admin}, context_instance=RequestContext(request))

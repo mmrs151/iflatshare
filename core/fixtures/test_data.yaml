@@ -131,18 +131,19 @@
   model: auth.user
   pk: 6
 
-- fields: {address: 1, status: present, user: 2}
+- fields: {address: 1, is_admin: true, status: present, user: 2}
   model: core.profile
   pk: 1
-- fields: {address: 1, status: present, user: 3}
+- fields: {address: 1, is_admin: false, status: present, user: 3}
   model: core.profile
   pk: 2
-- fields: {address: 2, user: 4}
+- fields: {address: 2, is_admin: false, status: '', user: 4}
   model: core.profile
   pk: 3
-- fields: {address: 2, user: 5}
+- fields: {address: 2, is_admin: false, status: '', user: 5}
   model: core.profile
   pk: 4
-- fields: {address: 1, status: left, user: 6}
-  pk: 5
+- fields: {address: 1, is_admin: false, status: left, user: 6}
   model: core.profile
+  pk: 5
+

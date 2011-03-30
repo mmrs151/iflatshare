@@ -41,3 +41,8 @@ class IFLContactForm(ContactForm):
             logger.info(u"Contact form submitted and sent (from: %s)" % self.cleaned_data['email'])
         except SMTPException, e:
             logger.error(u"Contact form error (%s)" % e)
+
+class FlatmateCreateForm(forms.Form):
+    name = forms.CharField()
+    email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput())
