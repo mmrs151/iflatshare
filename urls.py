@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
 from django.conf import settings
 from core.forms import IFLContactForm
-from core.models import Profile
+import core.signals
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -30,5 +31,5 @@ urlpatterns += patterns('',
 )
 
 urlpatterns += patterns('',
-    (r'^accounts/', include('registration.urls')),
-    url(r'^accounts/register/create/$','registration.views.register',{'profile_callback': Profile.objects.create}),)
+    (r'^accounts/', include('registration.backends.default.urls')),
+    )

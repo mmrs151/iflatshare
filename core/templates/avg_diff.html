@@ -42,6 +42,7 @@
    <tr>
     <td>
      <form name='calendar' method='post' action='/avg_diff/'>
+     {% csrf_token %}
      {{form}}
     </td>
    </tr>

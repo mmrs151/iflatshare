@@ -1,8 +1,12 @@
-def create_profile(sender, instance, **kwargs):
-    print sender, instance
+from django.contrib.auth.models import User
+from core.models import Profile
 
-def assign_address(sender, instance, **kwargs):
-    invitee_profile = instance
-    if invitee_profile.was_invited() and invitee_profile.address is None:
-        invitee_profile.address = invitee_profile.from_user_address()
-        invitee_profile.save()
+def create_profile(sender, **kw):
+    u = kw['request'].POST['username']
+    user = User.objects.get(username=u)
+    if kw["signal"]:
+        profile = Profile(user=user)
+        profile.save()
+
+from registration.signals import user_registered
+user_registered.connect(create_profile)

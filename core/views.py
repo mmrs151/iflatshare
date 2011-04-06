@@ -44,7 +44,6 @@ def avg_diff(request):
     if form.is_valid():
         year = request.POST.get('year')
         month = request.POST.get('month')
-        print year, month
     else:
         year = date.today().year 
         month = date.today().month
@@ -118,12 +117,11 @@ def create_flatmate(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             newuser = User.objects.create_user(name, email, password)
-            Profile.objects.create_from_user(newuser)
-            newuser_profile = Profile.objects.get(user=newuser)
+            profile = Profile(user=newuser)
             admin_address = user.profile.address
-            newuser_profile.address = admin_address
-            newuser_profile.status = 'present'
-            newuser_profile.save()
+            profile.address = admin_address
+            profile.status = 'present'
+            profile.save()
             return HttpResponseRedirect('/avg_diff/')
     else:
         form = FlatmateCreateForm()
