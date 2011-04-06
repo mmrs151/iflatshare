@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from models import Item, Address
 from envelope.forms import *
+from django.conf import settings
 
 class ItemForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -45,4 +46,5 @@ class IFLContactForm(ContactForm):
 class FlatmateCreateForm(forms.Form):
     name = forms.CharField()
     email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(initial=settings.DEFAULT_PASSWORD, \
+                               widget=forms.HiddenInput())

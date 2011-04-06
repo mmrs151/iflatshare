@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, HttpResponseForbidden
 from django.template import RequestContext, Context, loader
 from forms import ItemForm, AddressForm, CalendarForm, FlatmateCreateForm
@@ -7,6 +8,8 @@ from django.contrib.auth.models import User
 from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
+from django.conf import settings
+from django.core.mail import send_mail
 
 @login_required
 def index(request):
@@ -15,6 +18,8 @@ def index(request):
 @login_required
 def item(request):
     user = request.user
+    if user.check_password(settings.DEFAULT_PASSWORD):
+        return HttpResponseRedirect('/accounts/password/change/')    
     if user.profile.has_address():
         if request.method == 'POST':
             form = ItemForm(user, request.POST)
@@ -122,6 +127,16 @@ def create_flatmate(request):
             profile.address = admin_address
             profile.status = 'present'
             profile.save()
+            context = {'user': str(newuser).title(),
+                       'admin': str(admin).title(),
+                       'url': 'http://iflatshare.co.uk',
+                       'password': settings.DEFAULT_PASSWORD }
+            mailbody = render_to_string(\
+                            'registration/confirm_flatmate.txt', context)
+            send_mail('Welcome to iFlatshare', \
+                      mailbody, \
+                      settings.DEFAULT_FROM_EMAIL, [email,], \
+                      fail_silently=False)
             return HttpResponseRedirect('/avg_diff/')
     else:
         form = FlatmateCreateForm()

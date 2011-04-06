@@ -1,0 +1,12 @@
+{% load i18n %}
+{% trans "Activate account at iFlatshare" %}
+
+{% blocktrans %}Hi {{user}}
+{{admin}} has invited you to use {{url}}
+Your user name is: {{user}} and 
+Password: {{password}}
+Your have to change your password before item entry.
+
+Thank you for using iFlatshare.
+{% endblocktrans %}
+
