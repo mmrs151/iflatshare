@@ -1,0 +1,17 @@
+"iFlatshare"
+"The tool allow shared flat tenants to add their daily cost and administer the monthly budget"
+Copyright (C) "2011" "Muhammad Mostafizur Rahman<mmrs151@gmail.com>"
+
+iFlatshare is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+iFlatshare is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+
