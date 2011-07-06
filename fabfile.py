@@ -1,58 +1,84 @@
-from __future__ import with_statement
-from fabric.api import *
-from fabric.contrib.console import confirm
+from fabric.api import local, put, cd, run, env
+from fabric.operations import prompt
+import datetime
 
-env.hosts = ['sewinzco@sewinz.com']
+release_date = datetime.datetime.now().strftime('%Y-%m-%d_%H:%M:%S')
+env.django = '/usr/local/lib/python2.6/dist-packages/django/'
+env.hosts = ['root@allsimple']
+app = 'iflatshare'
 
 def qa():
     """Use QA environment settings on remote host"""
-    env.path = '/home2/sewinzco/www/iflatshare/qa/iflatshare/'
+    env.path = '/sites/%s_qa' %app
     env.environment = 'qa'
 
 def production():
     """Use Production environment settings on remote host"""
-    env.path = '/home2/sewinzco/www/iflatshare/'
+    env.path = '/sites/%s' %app
     env.environment = 'production'
 
-def test():
-    with settings(warn_only=True):
-        result = local('./manage.py test core', capture=True)
-    if result.failed and not confirm("Tests failed. Continue anyway?"):
-        abort("Aborting at user request")
+def _release_dir():
+    return '%s/releases/%s' % (env.path, release_date)
 
-def pack():
-    local('tar czf /tmp/iflatshare.tgz .', capture=False)
-
-def prepare_deploy():
-    test()
-    pack()
+def prepare_server():
+    print "Preaparing Server"
+    run('mkdir %s/releases/%s' % (env.path, release_date))
+    with cd(env.path):
+        run('rm -Rf current')
 
 def upload(tag_version):
-    """Put latest tag on remote host"""
-    local('git archive --format=tar %s |gzip > /tmp/%s.gz' % (tag_version,\
-            tag_version))
-    put('/tmp/%s.gz' % tag_version, '/tmp/')
+    """Put code on remote host"""
+    local('git archive --format=tar %s |gzip > /tmp/%s.tar.gz' \
+            % (tag_version, app))
+    put('/tmp/%s.tar.gz', '/tmp/' %app)
 
-def reload():
-    """touch the fcgi script, causing the app to reload"""
+def configure_server():
+    with cd(_release_dir()):
+        run('tar -xzf /tmp/%s.tar.gz' %app)
+        run('cp %s/settings_%(environment)s.py %s/settings.py' \
+                % (app, env))
+        run('cp django_%(environment)s.wsgi django.wsgi' % env)
+        run('rm django_*.wsgi')
+        run('rm %s/settings_*.py' %app)
     with cd(env.path):
-        run('touch iflatshare.fcgi')
+        run('ln -s %s current' % _release_dir())
+        run('chmod -R 757 current/iflatshare' %app)
+
+def update_dependencies():
+    """Update external dependencies on remote host"""
+    with cd(env.path):
+        run('source bin/activate')
+        run('sudo pip install -E %(path)s --requirement %(path)s/current/requirements.txt' % env)
+
+def bootstrap():
+    """Prepare remote host"""
+    run('mkdir -p %(path)s' % env)
+    run('virtualenv %(path)s' % env)
 
 def syncdb():
     """Run ./manage.py syncdb"""
     with cd(env.path):
-        run('./manage.py syncdb"')
+        run('bash -c "source bin/activate && ./current/%s/manage.py syncdb --all"' %app)
+        run('./current/%s/manage.py migrate core --fake"' %app)
 
-def prepare_server():
-    run('cp settings_%(environment)s.py settings.py' % env)
-    run('cp iflatshare_%(environment)s.fcgi iflatshare.fcgi' % env)
-    run('rm media/admin')
-    run('ln -s /home2/sewinzco/.local/lib/python2.6/site-packages/django/contrib/admin/media/ media/admin')
-
-def deploy(tag_version):
-    prepare_deploy()
-    upload(tag_version)
+def test():
+    """Run tests (in virtual environment) on remote host"""
     with cd(env.path):
-        run('tar -xzf /tmp/%s.gz' % tag_version)
-        prepare_server()
-        reload()
+        run('source bin/activate')
+        run('./current/%s/manage.py test core' %app)
+        run('deactivate')
+        
+def reload():
+    """touch the wsgi script, causing the app to reload"""
+    with cd(env.path):
+        run('touch current/django.wsgi')
+        
+def deploy(tag_version):
+    if not tag_version:
+        tag_version = prompt("No Tag version given, please specify one:")
+    if 'environment' not in env:
+        env.environment = prompt("No environment given, please specify one:")
+    prepare_server()
+    upload(tag_version)
+    configure_server()
+    reload()
