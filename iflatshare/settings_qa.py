@@ -145,7 +145,6 @@ INSTALLED_APPS = (
     'honeypot',
     'registration',
     'south',
-    'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'core.Profile'

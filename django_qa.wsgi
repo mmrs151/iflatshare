@@ -1,8 +1,8 @@
 import os
 import sys
 
-sys.path.append('/Users/shohag/Sites')
-sys.path.append('/Users/shohag/Sites/iflatshare')
+sys.path.append('/sites/iflatshare_qa/current')
+sys.path.append('/sites/iflatshare_qa/current/iflatshare')
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'iflatshare.settings'
 

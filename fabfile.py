@@ -22,7 +22,7 @@ def _release_dir():
 
 def prepare_server():
     print "Preaparing Server"
-    run('mkdir %s/releases/%s' % (env.path, release_date))
+    run('mkdir -p %s/releases/%s' % (env.path, release_date))
     with cd(env.path):
         run('rm -Rf current')
 
@@ -30,19 +30,19 @@ def upload(tag_version):
     """Put code on remote host"""
     local('git archive --format=tar %s |gzip > /tmp/%s.tar.gz' \
             % (tag_version, app))
-    put('/tmp/%s.tar.gz', '/tmp/' %app)
+    put('/tmp/%s.tar.gz'  %app, '/tmp/')
 
 def configure_server():
     with cd(_release_dir()):
         run('tar -xzf /tmp/%s.tar.gz' %app)
-        run('cp %s/settings_%(environment)s.py %s/settings.py' \
-                % (app, env))
-        run('cp django_%(environment)s.wsgi django.wsgi' % env)
+        run('cp %s/settings_%s.py %s/settings.py' \
+                % (app, env.environment, app))
+        run('cp django_%s.wsgi django.wsgi' % env.environment)
         run('rm django_*.wsgi')
         run('rm %s/settings_*.py' %app)
     with cd(env.path):
         run('ln -s %s current' % _release_dir())
-        run('chmod -R 757 current/iflatshare' %app)
+        run('chmod -R 757 current/%s' %app)
 
 def update_dependencies():
     """Update external dependencies on remote host"""
