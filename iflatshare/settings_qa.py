@@ -45,7 +45,7 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/Users/shohag/Sites/iflatshare/media/'
+MEDIA_ROOT = '/sites/iflatshare_qa/current/iflatshare/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -111,8 +111,8 @@ ROOT_URLCONF = 'iflatshare.urls'
 #} 
 
 TEMPLATE_DIRS = (
-    "/Users/shohag/Sites/iflatshare/templates",
-    "/Users/shohag/Sites/iflatshare/core/templates"
+    "/sites/iflatshare_qa/current/iflatshare/templates",
+    "/sites/iflatshare_qa/current/iflatshare/core/templates"
 )
 
 ENV = 'DEV'
