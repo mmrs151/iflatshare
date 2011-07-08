@@ -81,4 +81,5 @@ def deploy(tag_version):
     prepare_server()
     upload(tag_version)
     configure_server()
+    update_dependencies()
     reload()
