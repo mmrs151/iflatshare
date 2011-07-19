@@ -25,7 +25,10 @@ def item(request):
             form = ItemForm(user, request.POST)
             if form.is_valid():
                 form.save()
-                return HttpResponseRedirect('/item/')
+                when = date.today()
+                year = when.strftime("%Y")
+                month = when.strftime("%m")
+                return monthly(request, year, month)
         else:
             form = ItemForm(user)
         return render_to_response('item.html', {'form': form,}, context_instance=RequestContext(request))
