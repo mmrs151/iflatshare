@@ -11,23 +11,23 @@
         <h2>Contact iFlatshare</h3>
         <p>&nbsp;</p>
             <section id="contact">
+             <table id="new" cellpadding="0" cellspacing="0" border="0" align="center">            
               <form action="{% url envelope-contact %}" method="post">
               {% csrf_token %}
               {% render_honeypot_field %}
 
                 <fieldset style="border:0px;">
-                  <table id="new" cellpadding="0" cellspacing="0" border="0" align="center">
                     <tbody>
                     {{ form }}
                     </tbody>
-                  </table>
                 </fieldset>
-                    <div id="button-area">
-                        <input class="button" type="button" value="Cancel"
-                                            onclick="window.location.href='/'"/>
-                        <input class="button" type="submit" value="Send Message" />
-                    </div>
+                <tr><td colspan="2" style="text-align:right">
+                 <input type="button" value="Cancel"
+                    onclick="window.location.href='/'"/>
+                 <input type="submit" value="Send" />
+                 </td></tr>
               </form>
+             </table>
             </section>
         </div>
 {% endblock %}

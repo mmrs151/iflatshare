@@ -1,12 +1,28 @@
 {% extends "registration/base_registration.html" %}
 {% block content %}
-<h2>Log In</h2>
 <br />
-    <form method="post" action="">
-    {% csrf_token %}
-        <table cellspacing="0">{{ form }}
-        <tr><td colspan="2" align="right"><input type="submit" value="Log In" /></td></tr>
-        </table>
-    </form>
+<div id="content-center">
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+    <table id="new" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2">{% if form.errors %}
+                <p class="errornote">Your username and password didn't match. Please try again.</p
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Username</td>
+            <td><input type="text" id="username" name="username" /></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td><input type="password" id="password" name="password" /></td>
+        </tr>
+    </table> 
+    <div id="button-area">
+        <input class="button" name="submit" type="submit" value="Log In" />
+    </div>
+</form>
+</div>
 
 {% endblock %}

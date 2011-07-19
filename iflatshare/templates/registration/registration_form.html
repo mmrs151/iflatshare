@@ -4,7 +4,7 @@
 {% block content %}
 <form method="post" action="./?invitation_key={{ invitation_key }}">
 {% csrf_token %}
-<table>
+<table id="new">
   {{ form }}
   <tr>
     <td colspan="2" style="text-align:right">

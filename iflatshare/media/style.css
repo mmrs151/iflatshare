@@ -13,6 +13,26 @@ vertical-align:baseline;
 color:#ffffff;
 text-align:left;
 }
+
+#new {margin:0px;padding:0px;color:#294ba6;font-family:"Trebuchet MS", Arial, Helvetica, sans-serif; font-size:12px;}
+#new th {text-align:left; font-size:20px; padding-top:10px}
+#new tr {vertical-align:top;}
+#new td {width:150px;}
+#new input {margin:4px;width:350px; border:#cccccc 1px solid; background-color:#eeeeee;padding:5px;font-size:20px;color:#CCCCCC;}
+#new input:focus {background-color:#ffffff;}
+#new input[type="radio"]{width:20px;color:#000000;}
+#new input[type="submit"]{width:100px;color:#000000;}
+#new input[type="button"]{width:100px;color:#000000;}
+#new ul {list-style-type:none; width:200px;}
+
+#button-area {width:800px; padding:30px 0px; right:0px;}
+#login-form #button-area {width:550px; padding:30px 0px; padding-left:410px;}
+
+#content-center {
+    width:500px;
+    margin: auto;
+}
+
 table {
 	border-collapse:separate;
 	border-spacing:2pt;
