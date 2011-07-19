@@ -14,11 +14,10 @@
 <h3>Monthly Total - {{ total }} 
 <br />Average - {{ avg }}</h3>
 <br />
-<h3>{{year}}/{{month}}</h3>
-<table border='2'>
- <tr>
- <td>
-  <table border="1" width="500px" id="sort_table" class="tablesorter">
+<h3>{{today}}</h3>
+<div id="report">
+ <div id="left-report">
+  <table border="1" width="500px" id="sort_table" class="tablesorter" id="new">
   <thead> 
     <tr bgcolor="#000000">
         <th><a href="#">User</a></th>
@@ -34,27 +33,22 @@
         <td>{{ data.diff }}</td>
 {% endfor %}
     </tr><tr><td colspan="3"><A HREF="javascript:window.print()">Click to Print This Report</A></td></tr>
-
   </table>
- </td>
- <td valign='top' bgcolor='#000000'>
+  <p>&nbsp;</p>
+
+ </div>
+ <div id="right-report">
   <table>
-   <tr>
-    <td>
      <form name='calendar' method='post' action='/avg_diff/'>
      {% csrf_token %}
      {{form}}
-    </td>
-   </tr>
    <tr>
-    <td>
-     <input type='submit' value='submit'>
+    <th colspan="2">
+     <input type='submit' value='submit' class="right">
      </form>
-    </td>
+    </th>
    </tr>
   </table>
- </td>
-</tr>
-</tbody>
-</table>
+ </div>
+</div>
 {% endblock %}

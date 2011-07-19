@@ -1,8 +1,10 @@
 from django.forms import ModelForm
 from django import forms
+from django.contrib.auth.models import User 
 from models import Item, Address
 from envelope.forms import *
 from django.conf import settings
+
 
 class ItemForm(ModelForm):
     def __init__(self, user, *args, **kwargs):
@@ -48,3 +50,11 @@ class FlatmateCreateForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(initial=settings.DEFAULT_PASSWORD, \
                                widget=forms.HiddenInput())
+
+    def clean_name(self):
+        cleaned_data = self.cleaned_data
+        clean_name = cleaned_data['name']
+        if clean_name and User.objects.filter(username=clean_name):
+            raise forms.ValidationError(u'Username already taken.')
+        return clean_name
+        

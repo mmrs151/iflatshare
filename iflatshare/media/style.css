@@ -24,14 +24,27 @@ text-align:left;
 #new input[type="submit"]{width:100px;color:#000000;}
 #new input[type="button"]{width:100px;color:#000000;}
 #new ul {list-style-type:none; width:200px;}
+#new textarea {margin:4px;width:350px; height:250px;border:#cccccc 1px solid; background-color:#eeeeee;padding:5px;}
 
-#button-area {width:800px; padding:30px 0px; right:0px;}
-#login-form #button-area {width:550px; padding:30px 0px; padding-left:410px;}
+.right {
+  float: right;
+}
 
 #content-center {
     width:500px;
     margin: auto;
 }
+
+#report{
+width: 700px;
+}
+#left-report {
+float: left;
+}
+#right-report {
+float: right;
+}
+
 
 table {
 	border-collapse:separate;
@@ -40,6 +53,7 @@ table {
 caption, th, td {
 	font-weight:normal;
     vertical-align:top;
+    padding-left: 5px;
 }
 blockquote:before, blockquote:after, q:before, q:after {
 	content:"";
@@ -199,9 +213,10 @@ h2{
     background:url(images/footerline.jpg) left top repeat-x #0e1424;
     clear:both;
     margin:100px 0 0px 0;
-    text-align:right;
-    color:#333333;
-    height:15px;
+    padding-left:150px;
+    padding-top: 20px;
+    color:#999999;
+    height:100px;
 }
 
 

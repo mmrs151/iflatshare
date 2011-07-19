@@ -10,6 +10,11 @@
 {% endblock %}
 {% block content %}
 <h2> Monthly Transaction Report </h2>
+<br />
+<br />
+<br />
+<div id="report">
+ <div id="left-report">
 <table border="1" cellpadding="5" width="500px" id="sort_table">
     <thead>
     <tr bgcolor="#000000" align="center">
@@ -30,5 +35,10 @@
     </tbody>
         <td align="center"><strong>TOTAL</strong></td><td colspan="4" align="center"><strong>{{ monthly_total }}</strong></td>
     </tr>
+</tr><tr><td colspan="3"><A HREF="javascript:window.print()">Click to Print This Report</A></td></tr>    
 </table>
+<p>&nbsp;</p>
+
+ </div>
+</div>
 {% endblock %}

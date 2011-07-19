@@ -1,6 +1,12 @@
 {% load i18n %}
-{% trans "Activate account at" %} {{ site.name }}:
+Dear customer,
+
+We are very glad to be notified that you wanted to try our free tool.
+Please {% trans "Activate your account at" %} {{ site.name }}:
 
 http://{{ site.domain }}{% url registration_activate activation_key %}
 
 {% blocktrans %}Link is valid for {{ expiration_days }} days.{% endblocktrans %}
+
+With Pleasure,
+iFlatshare.

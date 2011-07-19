@@ -126,11 +126,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'localhost'
 EMAIL_HOST_PASSWORD = ''
-DEFAULT_FROM_EMAIL = 'webmaster@localhost'
+DEFAULT_FROM_EMAIL = 'admin@seo-feeds.com'
 DEFAULT_TO_EMAIL = 'mmrs151@gmail.com'
-EMAIL_PORT = 1025
+EMAIL_PORT = 25
 
-ACCOUNT_ACTIVATION_DAYS = 2
+ACCOUNT_ACTIVATION_DAYS = 7
 
 INSTALLED_APPS = (
     'django.contrib.auth',

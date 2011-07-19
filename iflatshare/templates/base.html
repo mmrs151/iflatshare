@@ -69,9 +69,12 @@
  
 {% block footer %} 
 <div id="footer">
- {{ env|environment_name}} | v{{ version|version_number}}
- (<a href="{{ 'url'|commit_name }}" target="_BLANK">{{ 'hash'|commit_name }}</a>)
- </div>
+    iFlatshare is a free open source tool<br/>
+     {{ env|environment_name}} | v{{ version|version_number}} (<a href="{{ 'url'|commit_name }}" target="_BLANK">{{ 'hash'|commit_name }}</a>)<br/><br/>
+    Developed by <a href="mailto:mmrs151@gmail.com">Muhammad Mostafizur Rahman</a>
+
+</div>
+
 {% endblock %}    
 <script type='text/javascript'>
 $(document).ready(function(){
