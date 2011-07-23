@@ -146,3 +146,6 @@ def create_flatmate(request):
     else:
         form = FlatmateCreateForm()
     return render_to_response('create-flatmate.html', {'form':form, 'admin':admin}, context_instance=RequestContext(request))
+
+def about(request):
+    return render_to_response('about.html')

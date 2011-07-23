@@ -33,3 +33,7 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     (r'^accounts/', include('registration.backends.default.urls')),
     )
+
+urlpatterns += patterns('',
+    url(r'^about/', 'core.views.about'),
+)
