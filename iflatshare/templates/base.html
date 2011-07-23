@@ -3,11 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title></title>
+<title>iflatshare, free flat sharing tool</title>
 <link rel="stylesheet" type="text/css" href="/site_media/style.css" />
 <script type='text/javascript' src='/site_media/js/vectorart_jquery.js'></script> 
 <script type="text/javascript" src="/site_media/js/jquery-1.4.4.js"></script> 
 <script type="text/javascript" src="/site_media/js/jquery.tablesorter.min.js"></script> 
+<script type="text/javascript" src="/site_media/js/jquery.ez-pinned-footer.js" charset="utf-8"></script>
+<script>
+    $(window).load(function() {
+		    $("#footer").pinFooter("relative");
+		});
+    $(window).resize(function() {
+    	    $("#footer").pinFooter("relative");
+		});
+
+</script>
+
 {% block head %}
 
 {% endblock %}
@@ -20,8 +31,8 @@
         
         <h5><a href="/accounts/password/change/">Change Password</a></h5>
         <h5><a href="/flatmate/create/">Add Flatmate</a></h5>
-        <h5><a href="#">Invite Housemates</a></h5>
-        <h5><a href="#">Edit Housemates</a></h5>
+        <h5><a href="#">Flat Admin</a></h5>
+        <h5><a href="#">Feedback</a></h5>
         
     </div><!--insidetop-->
 </div><!-- top -->

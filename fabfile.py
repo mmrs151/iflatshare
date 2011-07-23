@@ -14,7 +14,7 @@ def qa():
 
 def production():
     """Use Production environment settings on remote host"""
-    env.path = '/sites/%s' %app
+    env.path = '/sites/%s_prod' %app
     env.environment = 'production'
 
 def _release_dir():
