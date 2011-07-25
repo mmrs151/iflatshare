@@ -116,10 +116,10 @@ TEMPLATE_DIRS = (
 )
 
 ENV = 'PRODUCTION'
-VERSION = '1.7.0'
-COMMIT = {'hash': 'f6ad71d',
+VERSION = '1.7.1'
+COMMIT = {'hash': '9a6fe34',
           'url': '''https://github.com/mrahma01/iflatshare'''\
-                 '''/commit/f6ad71dab18a9faed8f611899397386c4c33f952'''}
+                 '''/commit/9a6fe3431c0bdb5c2079cfeb95a5ffcb6756447f'''}
 
 HONEYPOT_FIELD_NAME = 'contact'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

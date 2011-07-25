@@ -213,19 +213,19 @@ h2{
     background:url(images/footerline.jpg) left top repeat-x #0e1424;
     clear:both;
     margin:100px 0 0px 0;
-    padding-left:150px;
     color:#999999;
     height:100px;
     width:100%;
 }
 
 #footer-left{
+    padding-left:150px;
     padding-top: 20px;
     float:left;
 }
 
 #footer-right{
-    width:260px;
+    width:100px;
     float:right;
 }
 
