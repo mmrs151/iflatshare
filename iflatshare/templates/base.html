@@ -98,10 +98,15 @@
  
 {% block footer %} 
 <div id="footer">
-    iFlatshare is a free open source tool<br/>
+  <div id="footer-left">
+      iFlatshare is a free open source tool<br/>
      {{ env|environment_name}} | v{{ version|version_number}} (<a href="{{ 'url'|commit_name }}" target="_BLANK">{{ 'hash'|commit_name }}</a>)<br/><br/>
     Developed by <a href="mailto:mmrs151@gmail.com">Muhammad Mostafizur Rahman</a>
-
+  </div>
+ <div id="footer-right">
+  <a href="https://www.instantssl.com" title="SSL Certificate Authority" style="font-family: arial; font-size: 10px; text-decoration: none;"><img src="/site_media/images/instantssl.gif" alt="Instant SSL Certificate" title="SSL Certificate Authority" border="0" /></a>
+  </div>
+  
 </div>
 
 {% endblock %}    

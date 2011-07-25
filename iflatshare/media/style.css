@@ -214,19 +214,23 @@ h2{
     clear:both;
     margin:100px 0 0px 0;
     padding-left:150px;
-    padding-top: 20px;
     color:#999999;
     height:100px;
+    width:100%;
 }
 
+#footer-left{
+    padding-top: 20px;
+    float:left;
+}
 
-#footer .content {
-	background:url(images/footer.jpg) center top no-repeat #0e1424;
-	padding:30px 0 115px 0;
+#footer-right{
+    width:260px;
+    float:right;
 }
 
 #footer a {
-    color: #333333;
+    color: #999999;
 }
 h3 {
 	font-size:16px;
@@ -234,13 +238,7 @@ h3 {
 	padding:0 0 10px 0;
 }
 
-#footer p {
- 	font-size:15px;
-	color:#fefefe;
-	padding:5px 0;
-}
-
-#footer p a:hover{
+#footer a:hover{
  	text-decoration:underline;
 	color:#fefefe;
 	
