@@ -13,6 +13,11 @@
     username: mrahma01
   model: auth.user
   pk: 1
+- fields:
+    name: Flat Admin
+    permissions: [31, 32, 33, 37, 38, 39, 40, 41, 42, 34, 35, 36]
+  model: auth.group
+  pk: 1
 - fields: {name: Grocery}
   model: core.category
   pk: 1
