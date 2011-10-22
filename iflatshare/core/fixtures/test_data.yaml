@@ -56,14 +56,14 @@
   model: auth.user
   pk: 1
 - fields:
-    date_joined: 2010-03-18 06:52:52.108094
+    date_joined: 2010-03-18 06:52:52
     email: ''
     first_name: ''
-    groups: []
+    groups: [1]
     is_active: true
-    is_staff: false
+    is_staff: true
     is_superuser: false
-    last_login: 2010-03-18 06:52:52.108038
+    last_login: 2011-10-22 00:43:24.081841
     last_name: ''
     password: sha1$7bae9$fe230d0902ec62a64bb05c5b01419762e2771978
     user_permissions: []
