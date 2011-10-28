@@ -1,15 +1,16 @@
 from django.shortcuts import render_to_response
 from django.template.loader import render_to_string
 from django.http import HttpResponseRedirect, HttpResponseForbidden
-from django.template import RequestContext, Context, loader
-from forms import ItemForm, AddressForm, CalendarForm, FlatmateCreateForm
-from iflatshare.core.models import *
-from django.contrib.auth.models import User
-from datetime import date
+from django.template import RequestContext
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 from django.core.mail import send_mail
+
+from datetime import date
+from iflatshare.core.models import *
+from forms import ItemForm, AddressForm, CalendarForm, FlatmateCreateForm
 
 @login_required
 def index(request):
@@ -108,7 +109,10 @@ def edit_address(request):
                 profile.address = address
                 profile.status = 'present'
                 profile.is_admin = True
+                profile.user.is_staff = True
+                profile.user.groups.add(Group.objects.get(name='Flat Admin'))
                 profile.save()
+                profile.user.save()
                 return HttpResponseRedirect('/item/')
     else:
         form = AddressForm(instance=address)
