@@ -15,8 +15,13 @@ class ItemAdmin(admin.ModelAdmin):
 		return qs.filter(user__profile__address=request.user.profile.address)
 
 	def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
-		if db_field.name == 'user':
-			kwargs['queryset'] = request.user.profile.get_housemates()
+		if not request.user.is_superuser:
+			if db_field.name == 'user':
+				kwargs['queryset'] = request.user.profile.get_housemates()
+			if db_field.name == 'category':
+				kwargs['queryset'] = request.user.profile.address.categories.all()
+			return super(ItemAdmin, self).formfield_for_foreignkey(db_field,\
+		                                                    request, **kwargs)
 		return super(ItemAdmin, self).formfield_for_foreignkey(db_field,\
 		                                                    request, **kwargs)
 
