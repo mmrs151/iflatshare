@@ -56,10 +56,13 @@ class Profile(models.Model):
     address = models.ForeignKey(Address, blank=True, null=True)
     CHOICES = (
         ('present', 'Present'),
+	    ('absent', 'Absent'),
         ('left', 'Left'),
     )
     status = models.CharField(max_length=7, choices=CHOICES)
     is_admin = models.BooleanField(default=False)
+    date_joined = models.DateField(auto_now_add=True)
+    date_left = models.DateField(blank=True, null=True)
 
     objects = ProfileManager()
     

@@ -1,14 +1,14 @@
 - fields:
     date_joined: 2010-03-02 10:51:27
-    email: muhammad.rahman@aemedia.com
-    first_name: ''
+    email: mmrs151@gmail.com
+    first_name: Muhammad
     groups: []
     is_active: true
     is_staff: true
     is_superuser: true
-    last_login: 2010-03-12 03:34:00.358367
-    last_name: ''
-    password: sha1$da654$5ab390e4eab42c48f41532a7e634029cb6238266 
+    last_login: 2011-11-09 21:40:33
+    last_name: Rahman
+    password: sha1$14069$5cca6d1a179ae22edfb4a3948ba349c5fedede43
     user_permissions: []
     username: mrahma01
   model: auth.user
