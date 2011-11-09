@@ -131,19 +131,19 @@
   model: auth.user
   pk: 6
 
-- fields: {address: 1, is_admin: true, status: present, user: 2}
+- fields: {address: 1, is_admin: true, status: present, user: 2, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 1
-- fields: {address: 1, is_admin: false, status: present, user: 3}
+- fields: {address: 1, is_admin: false, status: present, user: 3, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 2
-- fields: {address: 2, is_admin: false, status: '', user: 4}
+- fields: {address: 2, is_admin: false, status: '', user: 4, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 3
-- fields: {address: 2, is_admin: false, status: '', user: 5}
+- fields: {address: 2, is_admin: false, status: '', user: 5, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 4
-- fields: {address: 1, is_admin: false, status: left, user: 6}
+- fields: {address: 1, is_admin: false, status: left, user: 6, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 5
 

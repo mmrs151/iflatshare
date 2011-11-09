@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.models import User 
-from models import Item, Address
+from models import *
 from envelope.forms import *
 from django.conf import settings
 
@@ -12,6 +12,7 @@ class ItemForm(ModelForm):
         self.fields['user'].queryset = user.profile.get_user()
         self.fields['user'].empty_label = None
         self.fields['user'].initial = user
+        self.fields['category'] = forms.ModelChoiceField(queryset=user.profile.address.categories.all())
     name = forms.CharField(widget=forms.Textarea)
 
     class Meta:

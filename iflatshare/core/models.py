@@ -3,12 +3,19 @@ from django.contrib.auth.models import User as AuthUser
 from django.db.models import Sum
 from decimal import *
 
+class Category(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __unicode__(self):
+        return self.name
+
 class Address(models.Model):
     house_number = models.CharField(max_length=200)
     post_code = models.CharField(max_length=8)
     street_name = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     country = models.CharField(max_length=200)
+    categories = models.ManyToManyField(Category)
 
     def __unicode__(self):
         return self.house_number
@@ -49,10 +56,13 @@ class Profile(models.Model):
     address = models.ForeignKey(Address, blank=True, null=True)
     CHOICES = (
         ('present', 'Present'),
+	    ('absent', 'Absent'),
         ('left', 'Left'),
     )
     status = models.CharField(max_length=7, choices=CHOICES)
     is_admin = models.BooleanField(default=False)
+    date_joined = models.DateField(auto_now_add=True)
+    date_left = models.DateField(blank=True, null=True)
 
     objects = ProfileManager()
     
@@ -102,12 +112,6 @@ class Profile(models.Model):
                                    ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
-
-class Category(models.Model):
-    name = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return self.name
 
 class ItemManager(models.Manager):
     def monthly_total(self, year, month):
