@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, widgets
 from django import forms
 from django.contrib.auth.models import User 
 from models import *
@@ -19,8 +19,11 @@ class ItemForm(ModelForm):
         model = Item
 
 class AddressForm(ModelForm):
+    categories = forms.ModelMultipleChoiceField(Category.objects.all(), widget=forms.SelectMultiple(attrs={'size':'4'}))
+    
     class Meta:
         model = Address
+
 
 class CalendarForm(forms.Form):
     year = forms.DecimalField(max_digits=4)

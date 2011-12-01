@@ -15,7 +15,7 @@
   pk: 1
 - fields:
     name: Flat Admin
-    permissions: [29, 25, 26, 34, 35, 32]
+    permissions: [35, 31, 40, 41, 42, 38]
   model: auth.group
   pk: 1
 - fields: {name: Grocery}
