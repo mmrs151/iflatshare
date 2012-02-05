@@ -115,18 +115,18 @@ TEMPLATE_DIRS = (
     "/sites/iflatshare_qa/current/iflatshare/core/templates"
 )
 
-ENV = 'DEV'
-VERSION = 'X.X.X'
-COMMIT = {'hash': '9d700b2',
+ENV = 'QA'
+VERSION = '1.8.0'
+COMMIT = {'hash': '5cc9a4d',
           'url': '''https://github.com/mrahma01/iflatshare'''\
-                 '''/commit/9d700b2584cb5906880773e0893c496c0aea6cbb'''}
+                 '''/commit/5cc9a4d6232a772667b4e830997da192000a055a'''}
 
 HONEYPOT_FIELD_NAME = 'contact'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'localhost'
 EMAIL_HOST_USER = 'localhost'
 EMAIL_HOST_PASSWORD = ''
-DEFAULT_FROM_EMAIL = 'admin@seo-feeds.com'
+DEFAULT_FROM_EMAIL = 'admin@iflatshare.co.uk'
 DEFAULT_TO_EMAIL = 'mmrs151@gmail.com'
 EMAIL_PORT = 25
 

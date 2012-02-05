@@ -8,6 +8,13 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
+        # Adding model 'Category'
+        db.create_table('core_category', (
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
+        ))
+        db.send_create_signal('core', ['Category'])
+
         # Adding model 'Address'
         db.create_table('core_address', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -22,21 +29,25 @@ class Migration(SchemaMigration):
         # Adding unique constraint on 'Address', fields ['house_number', 'post_code']
         db.create_unique('core_address', ['house_number', 'post_code'])
 
+        # Adding M2M table for field categories on 'Address'
+        db.create_table('core_address_categories', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('address', models.ForeignKey(orm['core.address'], null=False)),
+            ('category', models.ForeignKey(orm['core.category'], null=False))
+        ))
+        db.create_unique('core_address_categories', ['address_id', 'category_id'])
+
         # Adding model 'Profile'
         db.create_table('core_profile', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
             ('address', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.Address'], null=True, blank=True)),
             ('status', self.gf('django.db.models.fields.CharField')(max_length=7)),
+            ('is_admin', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('date_joined', self.gf('django.db.models.fields.DateField')(auto_now_add=True, blank=True)),
+            ('date_left', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
         ))
         db.send_create_signal('core', ['Profile'])
-
-        # Adding model 'Category'
-        db.create_table('core_category', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
-        ))
-        db.send_create_signal('core', ['Category'])
 
         # Adding model 'Item'
         db.create_table('core_item', (
@@ -55,14 +66,17 @@ class Migration(SchemaMigration):
         # Removing unique constraint on 'Address', fields ['house_number', 'post_code']
         db.delete_unique('core_address', ['house_number', 'post_code'])
 
+        # Deleting model 'Category'
+        db.delete_table('core_category')
+
         # Deleting model 'Address'
         db.delete_table('core_address')
 
+        # Removing M2M table for field categories on 'Address'
+        db.delete_table('core_address_categories')
+
         # Deleting model 'Profile'
         db.delete_table('core_profile')
-
-        # Deleting model 'Category'
-        db.delete_table('core_category')
 
         # Deleting model 'Item'
         db.delete_table('core_item')
@@ -107,6 +121,7 @@ class Migration(SchemaMigration):
         },
         'core.address': {
             'Meta': {'unique_together': "(('house_number', 'post_code'),)", 'object_name': 'Address'},
+            'categories': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['core.Category']", 'symmetrical': 'False'}),
             'city': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'country': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
             'house_number': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
@@ -131,7 +146,10 @@ class Migration(SchemaMigration):
         'core.profile': {
             'Meta': {'object_name': 'Profile'},
             'address': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['core.Address']", 'null': 'True', 'blank': 'True'}),
+            'date_joined': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
+            'date_left': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_admin': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'status': ('django.db.models.fields.CharField', [], {'max_length': '7'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
         }
