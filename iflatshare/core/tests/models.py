@@ -56,7 +56,7 @@ class AddressTestCase(TestCase):
         """
         address = Address.objects.get(pk=1)
         summary = dict((c.name, c.item__price__sum) for c in address.category_summary(2010, 3))
-        self.failUnlessEqual(summary, {u'Grocery': Decimal('14.88'), u'HouseHold': Decimal('4.67')})
+        self.failUnlessEqual(summary, {u'Grocery': Decimal('1.20'), u'HouseHold': Decimal('4.67')})
 
     def test_category_transaction(self):
         """
