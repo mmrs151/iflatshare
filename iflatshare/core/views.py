@@ -80,8 +80,8 @@ def user_transaction(request, user_name, year, month):
 @login_required
 def monthly_category(request, year, month):
     user = request.user
-    address = user.address
-    summery = address.category_summery(year, month)
+    address = user.profile.address
+    summery = address.category_summary(year, month)
     return render_to_response('monthly_category.html',{'summery':summery},context_instance=RequestContext(request))
 
 

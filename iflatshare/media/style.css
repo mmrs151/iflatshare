@@ -43,7 +43,8 @@ width: 750px;
 float: left;
 }
 #right-report {
-float: right;
+    float: right;
+    width: 200px;
 }
 
 

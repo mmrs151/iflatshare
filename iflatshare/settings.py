@@ -45,7 +45,7 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/Users/mrahman/Sites/iflatshare/iflatshare/media'
+MEDIA_ROOT = '/Users/mrahman/Sites/iflatshare/iflatshare/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -111,8 +111,8 @@ ROOT_URLCONF = 'iflatshare.urls'
 #} 
 
 TEMPLATE_DIRS = (
-    "/Users/mrahman/Sites/iflatshare/iflatshare/templates"
-    "/Users/mrahman/Sites/iflatshare/iflatshare/core/templates"
+    "/Users/mrahman/Sites/iflatshare/iflatshare/templates/",
+    "/Users/mrahman/Sites/iflatshare/iflatshare/core/templates/"
 )
 
 ENV = 'Dev'
@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'honeypot',
     'registration',
     'south',
+    'django_extensions',
 )
 
 AUTH_PROFILE_MODULE = 'core.Profile'

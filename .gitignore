@@ -1,7 +1,8 @@
 *.pyc
-*.p
+*.swp
 *.Python
 .db
+.DS_Store
 bin/
 include/
 lib/

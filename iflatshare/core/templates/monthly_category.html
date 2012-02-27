@@ -1,12 +1,13 @@
-{% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }}. Thanks for logging in. <a href="/accounts/logout/">Logout</a> </p>
-{% endif %}
-<h1>Monthly Category Report</h1>
-<table border="1" cellpadding="5">
-    <th>Category Name</th><th>Total Spent</th>
+{% extends "base.html" %}
+{% block content %}
+<h2>Monthly Category Report</h2>
+<p>&nbsp;</p>
+<table border="1" id="new"  bgcolor="#000">
+    <th valign="top">Category Name</th><th>Total Spent</th>
     {% for item in summery %}
-    <tr>
-        <td>{{ item }}</td><td align="right">{{ item.item__price__sum }}</td>
+    <tr bgcolor="#336699">
+        <td><a href="/category/{{ item }}/{% now "Y" %}/{% now "m" %}">{{ item }}</a></td><td>{{ item.item__price__sum }}</td>
     </tr>
     {% endfor %}
 </table>
+{% endblock %}
