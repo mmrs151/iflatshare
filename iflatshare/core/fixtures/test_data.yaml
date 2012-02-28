@@ -130,7 +130,21 @@
     username: sumon
   model: auth.user
   pk: 6
-
+- fields:
+    date_joined: 2012-02-28 14:46:24.330232
+    email: m@m.co
+    first_name: ''
+    groups: []
+    is_active: true
+    is_staff: true
+    is_superuser: true
+    last_login: 2012-02-28 15:40:41.170076
+    last_name: ''
+    password: sha1$a0a17$40b35149a74ba8a89089b12551e75eb6058ea55f
+    user_permissions: []
+    username: testadmin
+  model: auth.user
+  pk: 7
 - fields: {address: 1, is_admin: true, status: present, user: 2, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 1

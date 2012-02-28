@@ -14,10 +14,14 @@ from forms import ItemForm, AddressForm, CalendarForm, FlatmateCreateForm
 
 @login_required
 def index(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     return HttpResponseRedirect('/avg_diff')
 
 @login_required
 def item(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     if user.check_password(settings.DEFAULT_PASSWORD):
         return HttpResponseRedirect('/accounts/password/change/')    
@@ -38,6 +42,8 @@ def item(request):
 
 @login_required
 def monthly(request, year, month):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     address = user.profile.address
     item_list = address.monthly_transaction(year, month)
@@ -46,6 +52,8 @@ def monthly(request, year, month):
 
 @login_required
 def avg_diff(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     if not user.profile.has_address():
         return HttpResponseRedirect('/profile/address/edit/')
@@ -68,6 +76,8 @@ def avg_diff(request):
 
 @login_required
 def user_transaction(request, user_name, year, month):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = User.objects.get(username__iexact=user_name)
     logged_in_user = request.user
     if not logged_in_user.profile.is_housemate_of(user):
@@ -79,6 +89,8 @@ def user_transaction(request, user_name, year, month):
 
 @login_required
 def monthly_category(request, year, month):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     address = user.profile.address
     summary = address.category_summary(year, month)
@@ -87,6 +99,8 @@ def monthly_category(request, year, month):
 
 @login_required
 def category_transaction(request, category_name, year, month):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     address = user.profile.address
     category_transaction = address.category_transaction(category_name, year, month)
@@ -96,6 +110,8 @@ def category_transaction(request, category_name, year, month):
 @csrf_protect
 @login_required
 def edit_address(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     profile = request.user.profile
     if profile.has_address():
         address = profile.address
@@ -119,9 +135,13 @@ def edit_address(request):
     return render_to_response('address.html', {'form': form}, context_instance=RequestContext(request))
 
 def thanks(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     return render_to_response('envelope/thanks.html', RequestContext(request))
 
 def create_flatmate(request):
+    if request.user.is_superuser:
+        return HttpResponseRedirect('/admin')
     user = request.user
     admin = user.profile.get_admin()
     if request.method == 'POST':

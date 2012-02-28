@@ -55,8 +55,9 @@ class AddressTestCase(TestCase):
         Test Monthly Category summery for an address
         """
         address = Address.objects.get(pk=1)
-        summary = dict((c.name, c.item__price__sum) for c in address.category_summary(2010, 3))
-        self.failUnlessEqual(summary, {u'Grocery': Decimal('1.20'), u'HouseHold': Decimal('4.67')})
+        summary = address.category_summary(2010, 3)
+        self.failUnlessEqual(str(summary), str([{'price__sum': Decimal('9.88'), \
+                'category__name': u'Grocery'}]))
 
     def test_category_transaction(self):
         """
