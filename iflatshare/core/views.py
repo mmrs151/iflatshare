@@ -81,8 +81,8 @@ def user_transaction(request, user_name, year, month):
 def monthly_category(request, year, month):
     user = request.user
     address = user.profile.address
-    summery = address.category_summary(year, month)
-    return render_to_response('monthly_category.html',{'summery':summery},context_instance=RequestContext(request))
+    summary = address.category_summary(year, month)
+    return render_to_response('monthly_category.html',{'summary':summary},context_instance=RequestContext(request))
 
 
 @login_required
@@ -90,8 +90,8 @@ def category_transaction(request, category_name, year, month):
     user = request.user
     address = user.profile.address
     category_transaction = address.category_transaction(category_name, year, month)
-    summery = address.category_summary(year, month)
-    return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summery':summery,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
+    summary = address.category_summary(year, month)
+    return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summary':summary,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
 
 @csrf_protect
 @login_required

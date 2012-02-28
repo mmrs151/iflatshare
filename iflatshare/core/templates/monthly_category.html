@@ -4,9 +4,9 @@
 <p>&nbsp;</p>
 <table border="1" id="new"  bgcolor="#000">
     <th valign="top">Category Name</th><th>Total Spent</th>
-    {% for item in summery %}
+    {% for item in summary %}
     <tr bgcolor="#336699">
-        <td><a href="/category/{{ item }}/{% now "Y" %}/{% now "m" %}">{{ item }}</a></td><td>{{ item.item__price__sum }}</td>
+        <td><a href="/category/{{ item.category__name }}/{% now "Y" %}/{% now "m" %}">{{ item.category__name }}</a></td><td>{{ item.price__sum }}</td>
     </tr>
     {% endfor %}
 </table>

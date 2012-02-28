@@ -40,9 +40,9 @@
 <tr bgcolor="#000000" align="center">
     <th>Category Name</th><th>Total Spent</th>
 </tr>
-    {% for item in summery %}
+    {% for item in summary %}
     <tr bgcolor="#336699" align="center">
-        <td align="left"><a href="/category/{{item}}/{{year}}/{{month}}">{{ item }}</a></td><td>{{ item.item__price__sum }}</td>
+        <td align="left"><a href="/category/{{item.category__name}}/{{year}}/{{month}}">{{ item.category__name }}</a></td><td>{{ item.price__sum }}</td>
     </tr>
     {% endfor %}
 </table>
