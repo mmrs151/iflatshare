@@ -4,13 +4,16 @@ from django.db.models import Sum
 from decimal import *
 
 class Category(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, unique=True)
 
     class Meta:
             ordering = ['name']
 
     def __unicode__(self):
         return self.name
+
+    def clean(self):
+        self.name = self.name.capitalize()
 
 class Address(models.Model):
     house_number = models.CharField(max_length=200)

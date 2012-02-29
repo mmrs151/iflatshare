@@ -61,4 +61,3 @@ class FlatmateCreateForm(forms.Form):
         if clean_name and User.objects.filter(username=clean_name):
             raise forms.ValidationError(u'Username already taken.')
         return clean_name
-        
