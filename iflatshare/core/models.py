@@ -13,6 +13,11 @@ class Category(models.Model):
         return self.name
 
     def clean(self):
+        from django.core.exceptions import ValidationError
+        self.name = self.name.split()
+        if len(self.name) > 1:
+            raise ValidationError("Category name can not have space")
+        self.name = self.name[0].strip()
         self.name = self.name.capitalize()
 
 class Address(models.Model):

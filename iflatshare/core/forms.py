@@ -58,6 +58,10 @@ class FlatmateCreateForm(forms.Form):
     def clean_name(self):
         cleaned_data = self.cleaned_data
         clean_name = cleaned_data['name']
-        if clean_name and User.objects.filter(username=clean_name):
+        clean_name = clean_name.strip()
+        clean_name = clean_name.split()
+        if len(clean_name) > 1:
+            raise forms.ValidationError(u'User name can not have space.')
+        if User.objects.filter(username=clean_name):
             raise forms.ValidationError(u'Username already taken.')
         return clean_name
