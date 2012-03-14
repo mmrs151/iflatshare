@@ -1,6 +1,6 @@
 from django.core.management.base import NoArgsCommand, CommandError
 from django.template.loader import render_to_string
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import User
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -17,8 +17,6 @@ class Command(NoArgsCommand):
         month = when.strftime("%m")
         month_str = when.strftime("%B")
 
-        year = 2010
-        month = 3 
         users = User.objects.all()
         for user in users:
             if not user.is_superuser:
@@ -41,7 +39,6 @@ class Command(NoArgsCommand):
                                 'expenditure' : expenditure,
                                 'monthly_total': monthly_total,
                                 'action' : 'pay',
-                                'preposition': 'to',
                                 'adverb': 'less than',     
                                 'month': month_str,
                                 'year': year,
@@ -50,7 +47,6 @@ class Command(NoArgsCommand):
                     if balance > 0:
                         context.update({
                                 'action' : 'collect',
-                                'preposition': 'from',
                                 'adverb': 'more than',
                             })
                     if not user.profile.is_admin:
