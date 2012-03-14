@@ -1,0 +1,17 @@
+{% load i18n %}
+
+Dear {{user}}
+
+Mr <a href="{{flat_admin_email}}">{{flat_admin}}</a> is asking you to {{action}} {{balance}} {{preposition}} him.
+
+Your have spent {{expenditure}} in {{month}} {{year}}.
+The monthly total for the flat {{address}} was {{monthly_total}}
+The avg spending was {{avg}}
+You have spent {{balance}} {{adverb}} than the average.
+
+For more detail please visit {{url}}
+
+Kind Regards,
+Support Team,
+iFlatshare,
+London UK

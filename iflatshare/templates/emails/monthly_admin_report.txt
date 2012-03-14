@@ -1,0 +1,14 @@
+Dear {{flat_admin}}
+
+The total spent of your {{address}} flat was {{monthly_total}} .
+The average spent was {{avg}}
+Your balance is {{balance}}
+
+Your flatmates have received an email to pay or collect money from you.
+
+For more detail please visit {{url}}
+
+Kind Regards,
+Support Team
+iFlatshare
+

@@ -57,7 +57,7 @@
   pk: 1
 - fields:
     date_joined: 2010-03-18 06:52:52
-    email: ''
+    email: 'r@r.com'
     first_name: ''
     groups: [1]
     is_active: true
@@ -72,7 +72,7 @@
   pk: 2
 - fields:
     date_joined: 2010-03-18 06:58:21.180940
-    email: ''
+    email: 'a@a.com'
     first_name: ''
     groups: []
     is_active: true
@@ -87,7 +87,7 @@
   pk: 3
 - fields:
     date_joined: 2010-03-18 06:58:39.226686
-    email: ''
+    email: 'rom@an.com'
     first_name: ''
     groups: []
     is_active: true
@@ -102,7 +102,7 @@
   pk: 4
 - fields:
     date_joined: 2010-03-18 06:59:15.079869
-    email: ''
+    email: 'st@eve.com'
     first_name: ''
     groups: []
     is_active: true
@@ -151,10 +151,10 @@
 - fields: {address: 1, is_admin: false, status: present, user: 3, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 2
-- fields: {address: 2, is_admin: false, status: '', user: 4, date_joined: '2009-09-09', date_left: null}
+- fields: {address: 2, is_admin: true, status: present, user: 4, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 3
-- fields: {address: 2, is_admin: false, status: '', user: 5, date_joined: '2009-09-09', date_left: null}
+- fields: {address: 2, is_admin: false, status: present, user: 5, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 4
 - fields: {address: 1, is_admin: false, status: left, user: 6, date_joined: '2009-09-09', date_left: null}
