@@ -101,6 +101,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'core.middleware.AutoLogout',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -156,6 +157,8 @@ AUTH_PROFILE_MODULE = 'core.Profile'
 LOGIN_REDIRECT_URL = '/avg_diff/'
 
 DEFAULT_PASSWORD = 'ch2ng3m3'
+
+AUTO_LOGOUT_DELAY = 10 
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
