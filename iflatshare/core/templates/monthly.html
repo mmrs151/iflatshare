@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block head %}
+{% load versioning %}
 <script>
     $(document).ready(function() 
         { 
@@ -15,8 +16,12 @@
 <br />
 <div id="report">
  <div id="left-report">
-<table border="1" cellpadding="5" width="750px" id="sort_table">
+ <table border="1" cellpadding="5" width="750px" id="sort_table">
     <thead>
+    <tr style="background:#000;"> 
+        <td><a class="white" href={% url core.views.monthly year|lastyear:month month|lastmonth%}>&lt;&lt; last month</a></td>
+        <td colspan="4" style="text-align:right"> <a class="white" href={% url core.views.monthly year|nextyear:month month|nextmonth %}>next month &gt;&gt;</a></td>
+    </tr>
     <tr bgcolor="#000000" align="center">
         <th><a href="#">Item Name</a></th>
         <th width="60px"><a href="#">Item Price</a></th>
@@ -28,7 +33,10 @@
     <tbody>
         {% for item in item_list %}
     <tr bgcolor="#336666" align="center">
-        <td align="left">{{item.name}}</td><td>{{ item.price }}</td><td>{{ item.purchase_date }}</td><td><a href="/category/{{item.category}}/{{year}}/{{month}}">{{ item.category }}</a></td><td><a href=/user/{{item.user}}/{{year}}/{{month}}>{{ item.user|upper }}</a></td>
+        <td align="left">{{item.name}}</td>
+        <td>{{ item.price }}</td><td>{{ item.purchase_date }}</td>
+        <td><a href={% url core.views.category_transaction item.category year month %}>{{ item.category }}</a></td>
+        <td><a href={% url core.views.user_transaction user year month %}>{{ item.user|upper }}</a></td>
     </tr>
 {% endfor %}
     <tr>

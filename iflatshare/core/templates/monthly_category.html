@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
+{% load versioning %}
+
 <h2>Monthly Category Report</h2>
 <p>&nbsp;</p>
-<table border="1" id="new"  bgcolor="#000">
-    <th valign="top">Category Name</th><th>Total Spent</th>
+<table border="1" id="sort_table"  bgcolor="#000">
+    <tr style="background:#000;"> 
+        <td><a href={% url core.views.monthly_category  year|lastyear:month month|lastmonth%}>&lt;&lt; last month</a></td>
+        <td colspan="3" style="text-align:right"> <a href={% url core.views.monthly_category year|nextyear:month month|nextmonth %}>next month &gt;&gt;</a></td>
+    </tr>    
+    <th>Category Name</th><th>Total Spent</th>
     {% for item in summary %}
     <tr bgcolor="#336699">
         <td><a href="/category/{{ item.category__name }}/{% now "Y" %}/{% now "m" %}">{{ item.category__name }}</a></td><td>{{ item.price__sum }}</td>

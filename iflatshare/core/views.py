@@ -94,7 +94,9 @@ def monthly_category(request, year, month):
     user = request.user
     address = user.profile.address
     summary = address.category_summary(year, month)
-    return render_to_response('monthly_category.html',{'summary':summary},context_instance=RequestContext(request))
+    return render_to_response('monthly_category.html',{'summary':summary, \
+            'year':year, 'month':month,
+        },context_instance=RequestContext(request))
 
 
 @login_required

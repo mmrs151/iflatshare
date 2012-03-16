@@ -31,6 +31,10 @@ text-align:left;
   float: right;
 }
 
+a.white {
+    color: white;
+}
+
 #content-center {
     width:500px;
     margin: auto;
