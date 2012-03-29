@@ -55,7 +55,7 @@ class Address(models.Model):
     def category_summary(self, year, month):
         return Item.objects.values('category__name').annotate(Sum('price')).\
                 filter(purchase_date__year=year, purchase_date__month=month,\
-                user__profile=self).order_by('-price__sum')
+                ).order_by('-price__sum')
     
     def category_transaction(self,category, year, month):
         return self.monthly_transaction(year, month).filter(category__name=category)
