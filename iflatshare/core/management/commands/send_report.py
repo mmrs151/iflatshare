@@ -29,8 +29,8 @@ class Command(NoArgsCommand):
                     balance = expenditure - avg
                     context = {
                                 'user': user,
-                                'address': [user.profile.address, \
-                                        user.profile.address.post_code,],
+                                'address': user.profile.address.house_number + ', ' +
+                                        user.profile.address.post_code,
                                 'flat_admin': user.profile.get_admin(),
                                 'flat_admin_email': \
                                         user.profile.get_admin().email,

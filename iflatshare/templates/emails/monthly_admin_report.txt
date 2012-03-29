@@ -1,10 +1,11 @@
 Dear {{flat_admin}}
 
-The total spent of your {{address}} flat was {{monthly_total}} .
+Your have spent {{expenditure}} in {{month}} {{year}}.
+The total spent of your [{{address}}] flat was {{monthly_total}} .
 The average spent was {{avg}}
 Your balance is {{balance}}
 
-Your flatmates have received an email to pay or collect money from you.
+Being an Admin, your flatmates have received an email to pay or collect money from you.
 
 For more detail please visit {{url}}
 

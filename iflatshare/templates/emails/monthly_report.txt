@@ -2,10 +2,10 @@
 
 Dear {{user}}
 
-Mr <a href="{{flat_admin_email}}">{{flat_admin}}</a> is asking you to {{action}} {{balance}}.
+Mr {{flat_admin}} ({{flat_admin_email}}) is asking you to {{action}} {{balance}}.
 
 Your have spent {{expenditure}} in {{month}} {{year}}.
-The monthly total for the flat {{address}} was {{monthly_total}}
+The monthly total for the flat [{{address}}] was {{monthly_total}}
 The avg spending was {{avg}}
 You have spent {{balance}} {{adverb}} than the average.
 
