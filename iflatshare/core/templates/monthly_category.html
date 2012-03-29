@@ -12,7 +12,7 @@
     <th>Category Name</th><th>Total Spent</th>
     {% for item in summary %}
     <tr bgcolor="#336699">
-        <td><a href="/category/{{ item.category__name }}/{% now "Y" %}/{% now "m" %}">{{ item.category__name }}</a></td><td>{{ item.price__sum }}</td>
+        <td><a href="/category/{{ item.category__name }}/{{ year }}/{{ month }}">{{ item.category__name }}</a></td><td>{{ item.price__sum }}</td>
     </tr>
     {% endfor %}
 </table>
