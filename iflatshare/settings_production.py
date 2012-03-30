@@ -98,6 +98,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'core.middleware.AutoLogout',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
