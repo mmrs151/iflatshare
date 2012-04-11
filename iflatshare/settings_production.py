@@ -154,6 +154,8 @@ LOGIN_REDIRECT_URL = '/avg_diff/'
 
 DEFAULT_PASSWORD = 'ch2ng3m3'
 
+AUTO_LOGOUT_DELAY = 10
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
