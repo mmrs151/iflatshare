@@ -1,0 +1,2 @@
+# send last month's report to all user on the 1st day of each month
+0 0 1 * * admin cd /sites/iflatshare_prod/current/iflatshare/ && /sites/iflatshare_prod/bin/python /sites/iflatshare_prod/current/iflatshare/manage.py send_report > /tmp/cronlog.txt 2>&1
