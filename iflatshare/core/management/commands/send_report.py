@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 
 from datetime import date
+from calendar import month_name
 
 from iflatshare.core.models import *
 
@@ -15,7 +16,10 @@ class Command(NoArgsCommand):
         when = date.today()
         year = when.strftime("%Y")
         month = when.strftime("%m")
-        month_str = when.strftime("%B")
+        month = int(month) - 1 #last month
+        if month == 0: 
+            month = 12
+        month_str = month_name[month]
 
         users = User.objects.all()
         for user in users:
