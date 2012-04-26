@@ -38,7 +38,7 @@ class AddressAdmin(admin.ModelAdmin):
 class ProfileAdmin(admin.ModelAdmin):
 	list_display = ('user','address','status','is_admin','date_joined','date_left')
 	ordering = ('-status',)
-	readonly_fields = ('user','address')
+	readonly_fields = ('user','address', 'date_joined')
 	def queryset(self, request):
 		qs = super(ProfileAdmin, self).queryset(request)
 		if request.user.is_superuser:
