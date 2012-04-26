@@ -43,6 +43,8 @@ class Address(models.Model):
             monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
         except TypeError:
             monthly_avg = 0
+        except ZeroDivisionError:
+            monthly_avg = 0
         return monthly_avg
 
     def monthly_total(self, year, month):
