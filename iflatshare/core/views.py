@@ -68,10 +68,10 @@ def avg_diff(request):
     address = user.profile.address
     total = address.monthly_total(year, month)
     avg = address.monthly_avg(year, month)
-    users = user.profile.get_housemates()
+    users = user.profile.get_housemates(year, month)
     when = date.today()
     today = when.strftime("%A %d, %B %Y")
-    avg_diff =dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
+    avg_diff = dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
     return render_to_response('avg_diff.html', {'form': form, 'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month, 'today':today},context_instance=RequestContext(request))
 
 @login_required
@@ -80,11 +80,11 @@ def user_transaction(request, user_name, year, month):
         return HttpResponseRedirect('/admin')
     user = User.objects.get(username__iexact=user_name)
     logged_in_user = request.user
-    if not logged_in_user.profile.is_housemate_of(user):
+    if not logged_in_user.profile.is_housemate_of(user) and not logged_in_user.profile.was_housemate_of(user):
         return HttpResponseForbidden("<h1>You are not authorised to view this page</h1>")
     item_list = user.profile.monthly_transaction(year, month)
     monthly_total = user.profile.monthly_total(year, month)
-    housemates = user.profile.get_housemates()
+    housemates = user.profile.get_housemates(year, month)
     return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name,'year':year, 'month':month, 'housemates':housemates},context_instance=RequestContext(request))
 
 @login_required
@@ -148,7 +148,10 @@ def create_flatmate(request):
     admin = user.profile.get_admin()
     if request.method == 'POST':
         form = FlatmateCreateForm(request.POST)
-        if form.is_valid():            
+        if form.is_valid():    
+            year = date.today().year 
+            month = date.today().month
+            d = date(year, month, 1)
             name = request.POST.get('name')
             email = request.POST.get('email')
             password = request.POST.get('password')
@@ -157,6 +160,7 @@ def create_flatmate(request):
             admin_address = user.profile.address
             profile.address = admin_address
             profile.status = 'present'
+            profile.date_joined = d
             profile.save()
             context = {'user': str(newuser).title(),
                        'admin': str(admin).title(),

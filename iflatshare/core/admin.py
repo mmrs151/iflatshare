@@ -37,7 +37,6 @@ class AddressAdmin(admin.ModelAdmin):
 
 class ProfileAdmin(admin.ModelAdmin):
 	list_display = ('user','address','status','is_admin','date_joined','date_left')
-	list_editable = ('status','is_admin')
 	ordering = ('-status',)
 	readonly_fields = ('user','address')
 	def queryset(self, request):

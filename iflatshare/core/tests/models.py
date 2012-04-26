@@ -34,7 +34,7 @@ class AddressTestCase(TestCase):
         Test the monthly avg for this address
         """
         address = Address.objects.get(pk=1)
-        self.failUnlessEqual(Decimal('9.775'), address.monthly_avg(2010, 3))
+        self.failUnlessEqual(Decimal('6.517'), address.monthly_avg(2010, 3))
 
     def test_monthly_total(self):
         """
@@ -56,8 +56,7 @@ class AddressTestCase(TestCase):
         """
         address = Address.objects.get(pk=1)
         summary = address.category_summary(2010, 3)
-        self.failUnlessEqual(str(summary), str([{'price__sum': Decimal('9.88'), \
-                'category__name': u'Grocery'}]))
+        self.failUnlessEqual(str(summary), str([{'price__sum': Decimal('14.88'), 'category__name': u'Grocery'}, {'price__sum': Decimal('4.67'), 'category__name': u'HouseHold'}]))
 
     def test_category_transaction(self):
         """
@@ -65,6 +64,19 @@ class AddressTestCase(TestCase):
         """
         address = Address.objects.get(pk=1)
         self.failUnlessEqual(str(address.category_transaction('Grocery',2010,3)),'[<Item: sweet>, <Item: Eggs>, <Item: tea, suger, milk, eve milk, mayo>]')
+
+    def test_total_user(self):
+        """
+        Test the number user living in a flat on a given month
+        """
+        address = Address.objects.get(pk=1)
+        month = 2
+        year = 2012
+        self.failUnlessEqual(address.get_current_users(year, month).count(), 3, "must have 3 users on February 2012")
+        month = 4
+        self.failUnlessEqual(address.get_current_users(year, month).count(), 4, "must have 4 user on April 2012")
+        year = 2011
+        self.failUnlessEqual(address.get_current_users(year, month).count(), 3, "must have 3 user on April 2011")
  
 class ProfileTestCase(TestCase):
     fixtures = ['test_data']
@@ -106,9 +118,11 @@ class ProfileTestCase(TestCase):
                     "user not found")
 
     def test_get_housemates(self):
+        month = 3
+        year = 2012        
         rocky = User.objects.get(username='rocky')
         anu = User.objects.get(username='anu')
-        self.assertTrue(anu in rocky.profile.get_housemates(), \
+        self.assertTrue(anu in rocky.profile.get_housemates(year, month), \
                     "housemates not found")
     
     def test_get_admin(self):

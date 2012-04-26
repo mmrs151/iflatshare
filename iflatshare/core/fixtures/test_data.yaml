@@ -31,6 +31,9 @@
     user: 5}
   model: core.item
   pk: 10
+-   fields: {category: 1, name: Tea, price: '9', purchase_date: 2012-03-20, user: 6}
+    model: core.item
+    pk: 11  
 - fields: {city: London, country: UK, house_number: 116A, post_code: HA8
       0BB, street_name: Burnt Oak Broaway}
   model: core.address
@@ -145,6 +148,36 @@
     username: testadmin
   model: auth.user
   pk: 7
+-   fields:
+        date_joined: 2012-04-26 00:14:29.007137
+        email: r@r.com
+        first_name: ''
+        groups: []
+        is_active: true
+        is_staff: false
+        is_superuser: false
+        last_login: 2012-04-26 00:14:29.007137
+        last_name: ''
+        password: sha1$7ae3a$b7397d76acef0e40056c86138b5e6497a38a6655
+        user_permissions: []
+        username: rasel
+    model: auth.user
+    pk: 8
+-   fields:
+        date_joined: 2012-04-26 00:14:43.501925
+        email: t@t.com
+        first_name: ''
+        groups: []
+        is_active: true
+        is_staff: false
+        is_superuser: false
+        last_login: 2012-04-26 00:14:43.501925
+        last_name: ''
+        password: sha1$1d58c$2a3827097e01be12ee1e27f731ff04509d951ca4
+        user_permissions: []
+        username: tarif
+    model: auth.user
+    pk: 9  
 - fields: {address: 1, is_admin: true, status: present, user: 2, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 1
@@ -157,7 +190,14 @@
 - fields: {address: 2, is_admin: false, status: present, user: 5, date_joined: '2009-09-09', date_left: null}
   model: core.profile
   pk: 4
-- fields: {address: 1, is_admin: false, status: left, user: 6, date_joined: '2009-09-09', date_left: null}
+- fields: {address: 1, is_admin: false, status: left, user: 6, date_joined: '2009-09-09', date_left: 2012-04-01}
   model: core.profile
   pk: 5
-
+-   fields: {address: 1, date_joined: 2012-04-01, date_left: null, is_admin: false,
+        status: present, user: 8}
+    model: core.profile
+    pk: 6
+-   fields: {address: 1, date_joined: 2012-04-01, date_left: null, is_admin: false,
+        status: present, user: 9}
+    model: core.profile
+    pk: 7  

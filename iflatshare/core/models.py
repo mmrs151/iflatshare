@@ -1,7 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User as AuthUser
 from django.db.models import Sum
+from django.core.exceptions import ValidationError
+from django.db.models import Q
 from decimal import *
+from datetime import date
 
 class Category(models.Model):
     name = models.CharField(max_length=200, unique=True)
@@ -13,7 +16,6 @@ class Category(models.Model):
         return self.name
 
     def clean(self):
-        from django.core.exceptions import ValidationError
         self.name = self.name.split()
         if len(self.name) > 1:
             raise ValidationError("Category name can not have space")
@@ -37,10 +39,10 @@ class Address(models.Model):
     def monthly_avg(self, year, month):
         try:
             getcontext().prec = 4
-            total_user = AuthUser.objects.filter(profile__address=self, profile__status='present').count()
+            total_user = self.get_current_users(year, month).count()
             monthly_avg = Decimal(self.monthly_total(year, month)/total_user)
         except TypeError:
-            monthly_avg =0
+            monthly_avg = 0
         return monthly_avg
 
     def monthly_total(self, year, month):
@@ -60,6 +62,17 @@ class Address(models.Model):
     def category_transaction(self,category, year, month):
         return self.monthly_transaction(year, month).filter(category__name=category)
 
+    def get_current_users(self, year, month):
+        """
+        return the users living on the current month/year
+        """
+        d = date(int(year), int(month), 1)
+        return Address.objects.filter(
+                Q(profile__address=self),
+                Q(profile__date_joined__lte=d),
+                Q(profile__date_left__isnull=True) | Q(profile__date_left__gt=d)  
+            )
+
 class ProfileManager(models.Manager):
     def create_from_user(self, user):
         self.create(user=user)
@@ -69,12 +82,11 @@ class Profile(models.Model):
     address = models.ForeignKey(Address, blank=True, null=True)
     CHOICES = (
         ('present', 'Present'),
-	    ('absent', 'Absent'),
         ('left', 'Left'),
     )
     status = models.CharField(max_length=7, choices=CHOICES)
     is_admin = models.BooleanField(default=False)
-    date_joined = models.DateField(auto_now_add=True)
+    date_joined = models.DateField(default='', blank=True, null=True)
     date_left = models.DateField(blank=True, null=True)
 
     objects = ProfileManager()
@@ -86,9 +98,13 @@ class Profile(models.Model):
         if self.status == 'present':
             return AuthUser.objects.filter(username=self.user)
 
-    def get_housemates(self):
-        if self.status == 'present':
-            return AuthUser.objects.filter(profile__address=self.address, profile__status='present')
+    def get_housemates(self, year, month):
+        d = date(int(year), int(month), 1)
+        return AuthUser.objects.filter(
+            Q(profile__address=self.address),
+            Q(profile__date_joined__lte=d),
+            Q(profile__date_left__isnull=True) | Q(profile__date_left__gt=d)
+        )
 
     def get_admin(self):
         if self.status == 'present':
@@ -104,7 +120,11 @@ class Profile(models.Model):
         return self.user.item_set.filter(purchase_date__year=year, purchase_date__month=month)
 
     def is_housemate_of(self, other_user):
-        return self.address == other_user.profile.address and self.status == other_user.profile.status
+        return self.address == other_user.profile.address and not other_user.profile.date_left
+
+    def was_housemate_of(self, other_user):
+        return self.address == other_user.profile.address and not other_user.profile.date_left == None
+
 
     def has_address(self):
         try:
@@ -125,6 +145,16 @@ class Profile(models.Model):
                                    ctx_dict)
         
         self.user.email_user(subject, message, settings.DEFAULT_FROM_EMAIL)
+
+    def clean(self):
+        if self.status == 'left':
+            if not self.date_left:
+                raise ValidationError('You must specify the date he left')
+            d = date.today()
+            self.date_left = d.strftime("%Y-%m-01")
+        if self.status == 'present':
+            if self.date_left:
+                raise ValidationError('Date left must be empty')
 
 class ItemManager(models.Manager):
     def monthly_total(self, year, month):
