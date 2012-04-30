@@ -23,6 +23,10 @@ urlpatterns += patterns('',
     (r'', include('iflatshare.core.urls')),
  )
  
+urlpatterns += patterns('',
+        (r'^api/', include('iflatshare.api.urls')),
+        )
+
 contact_info = {'form_class':IFLContactForm, 
                 'template_name':'envelope/contact.html', 'redirect_to':'/thanks/',}
 
@@ -37,3 +41,4 @@ urlpatterns += patterns('',
 urlpatterns += patterns('',
     url(r'^about/', 'core.views.about'),
 )
+
