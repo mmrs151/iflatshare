@@ -152,8 +152,9 @@ class Profile(models.Model):
         if self.status == 'left':
             if not self.date_left:
                 raise ValidationError('You must specify the date he left')
+            month = self.date_left.month
             d = date.today()
-            self.date_left = d.strftime("%Y-%m-01")
+            self.date_left = d.strftime("%Y-"+str(month)+"-01")
         if self.status == 'present':
             if self.date_left:
                 raise ValidationError('Date left must be empty')
