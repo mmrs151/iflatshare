@@ -48,7 +48,8 @@ def monthly(request, year, month):
     address = user.profile.address
     item_list = address.monthly_transaction(year, month)
     monthly_total = address.monthly_total(year, month)
-    return render_to_response('monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month},context_instance=RequestContext(request))
+    header_date = date(int(year), int(month), 1)
+    return render_to_response('monthly.html',{'item_list': item_list,'monthly_total': monthly_total, 'year':year, 'month':month, 'header_date':header_date},context_instance=RequestContext(request))
 
 @login_required
 def avg_diff(request):
@@ -71,8 +72,9 @@ def avg_diff(request):
     users = user.profile.get_housemates(year, month)
     when = date.today()
     today = when.strftime("%A %d, %B %Y")
+    header_date = date(int(year), int(month), 1)
     avg_diff = dict((usr.username, {'total': usr.profile.monthly_total(year, month), 'diff': usr.profile.monthly_total(year,month)-address.monthly_avg(year,month)}) for usr in users) 
-    return render_to_response('avg_diff.html', {'form': form, 'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month, 'today':today},context_instance=RequestContext(request))
+    return render_to_response('avg_diff.html', {'form': form, 'avg_diff': avg_diff, 'avg': avg, 'total': total,'year':year, 'month':month, 'today':today, 'header_date':header_date},context_instance=RequestContext(request))
 
 @login_required
 def user_transaction(request, user_name, year, month):
@@ -85,7 +87,8 @@ def user_transaction(request, user_name, year, month):
     item_list = user.profile.monthly_transaction(year, month)
     monthly_total = user.profile.monthly_total(year, month)
     housemates = user.profile.get_housemates(year, month)
-    return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name,'year':year, 'month':month, 'housemates':housemates},context_instance=RequestContext(request))
+    header_date = date(int(year), int(month), 1)
+    return render_to_response('user_transaction.html',{'item_list': item_list, 'monthly_total':monthly_total, 'user_name':user_name,'year':year, 'month':month, 'housemates':housemates, 'header_date':header_date},context_instance=RequestContext(request))
 
 @login_required
 def monthly_category(request, year, month):
@@ -93,9 +96,10 @@ def monthly_category(request, year, month):
         return HttpResponseRedirect('/admin')
     user = request.user
     address = user.profile.address
+    header_date = date(int(year), int(month), 1)
     summary = address.category_summary(year, month)
     return render_to_response('monthly_category.html',{'summary':summary, \
-            'year':year, 'month':month,
+            'year':year, 'month':month, 'header_date':header_date
         },context_instance=RequestContext(request))
 
 
@@ -106,8 +110,9 @@ def category_transaction(request, category_name, year, month):
     user = request.user
     address = user.profile.address
     category_transaction = address.category_transaction(category_name, year, month)
+    header_date = date(int(year), int(month), 1)
     summary = address.category_summary(year, month)
-    return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summary':summary,'category':category_name,'category_transaction':category_transaction},context_instance=RequestContext(request))
+    return render_to_response('category_transaction.html',{'year':year, 'month':month, 'summary':summary,'category':category_name,'category_transaction':category_transaction, 'header_date':header_date},context_instance=RequestContext(request))
 
 @csrf_protect
 @login_required

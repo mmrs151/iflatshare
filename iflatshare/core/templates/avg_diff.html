@@ -9,7 +9,7 @@
 </script>
 {% endblock %}
 {% block content %}
-<h2>FINAL MONTHLY REPORT for {{year}}/{{month}}</h2>
+<h2>FINAL MONTHLY REPORT for {{header_date|date:"F"}}, {{year}}</h2>
 <br />
 <h3>Monthly Total - {{ total }} 
 <br />Average - {{ avg }}</h3>
