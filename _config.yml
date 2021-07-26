@@ -1,0 +1,8 @@
+title: Iflatshare
+description: "Personal project for Monthly Cost Management in a shared Flat "
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-time-machine
+
+gems:
+  - jekyll-mentions
